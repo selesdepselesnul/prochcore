@@ -126,8 +126,7 @@
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$content = $_POST['content'];
-		
-		echo "$name, $email, $content";		
+				
 		mysqli_query(
 			$mysqli,
 			"INSERT INTO message (name, email, content)
