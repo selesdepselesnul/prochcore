@@ -5,3 +5,8 @@ $config['database']['username']='root';
 $config['database']['password']='';
 $config['database']['database']='uas';
 
+$mysqli = mysqli_connect(
+			"127.0.0.1", 
+			"root", 
+			"indonesiaraya", 
+			"uas");

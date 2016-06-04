@@ -89,11 +89,6 @@
 	</div>
 	<br/>
 <?php	
-	$mysqli = mysqli_connect(
-			"127.0.0.1", 
-			"root", 
-			"indonesiaraya", 
-			"uas");
 
 	if(!empty($_POST['name']) 
 		&& !empty($_POST['email'])
