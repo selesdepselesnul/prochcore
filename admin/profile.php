@@ -36,5 +36,5 @@ mysqli_close($mysqli);
 	<input type="submit">
 </form>
 <?php
-require_once '../footer.php';
+require_once $config['base_url'].'footer.php';
 ?>
