@@ -39,14 +39,15 @@
 			</div>
 	</div>
 	<div id="about" class="main">
-		<h1><?php read_content('about_header'); ?></h1>
-		<?php read_content('about_content'); ?>
+		<h1><?php read_content('about', 'header') ?></h1>
+		<?php read_content('about', 'content') ?>
 	</div>
 	<div id="contact" class="main">
-		<h1>How To Contact Us ? </h1>
+		<h1><?php read_content('contact', 'header') ?></h1>
 		<br/>
 		<br/>
 		<address>
+
 			<h2>You can directly visit our office at</h2><br/>
 			Indonistan Nuke Inc<br/>
 			Sehat Bahagia Street No. 100 <br/>
