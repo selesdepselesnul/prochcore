@@ -6,8 +6,9 @@ require_once '../tags.php';
 var counter = 1;
 
 function readURL(input) {
-    const idNumber = input.name.split('_').pop();
+    const idNumber = input.id.split('_').pop();
 
+    console.log(idNumber);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -22,8 +23,38 @@ function readURL(input) {
 
 function addingWeapon() {
     counter++;
+
+    // div container of weapon
     const div = document.createElement('div');
     div.id = 'weaponGroup'+counter;
+
+    // weapon img
+    const weaponPreviewImg = document.createElement('img');
+    weaponPreviewImg.id='weaponPreview'+counter;
+    weaponPreviewImg.src = '';
+
+
+    const br = document.createElement('br');
+
+    // weapon input file
+    const weaponInputFile = document.createElement('input');
+    weaponInputFile.type = 'file';
+    weaponInputFile.name= 'weaponpictures[]';
+    weaponInputFile.id = 'weapon_picture_'+counter;
+    weaponInputFile.setAttribute('onchange', 'readURL(this)');
+
+    const weaponDescTextArea = document.createElement('textarea');
+    weaponDescTextArea.name = 'weapon_descriptions[]';
+    weaponDescTextArea.rows = 8;
+    weaponDescTextArea.cols = 40;
+
+    div.appendChild(weaponPreviewImg);
+    div.appendChild(br);
+    div.appendChild(weaponInputFile);
+    div.appendChild(br);
+    div.appendChild(weaponDescTextArea);
+    div.appendChild(br);
+
     const weapons = document.getElementById('weapons');
     weapons.appendChild(div);
 }
@@ -38,8 +69,8 @@ function addingWeapon() {
     <div id="weapons">
         <div id="weaponGroup1">
             <img src="" id="weaponPreview1"/> <br/>
-            <input type="file" name="weaponpictures[]" onchange="readURL(this)"> <br />
-            <textarea name="weapon_description_1" rows="8" cols="40"></textarea> <br />
+            <input type="file" name="weaponpictures[]" id="weapon_picture_1" onchange="readURL(this)"> <br />
+            <textarea name="weapon_descriptions[]" rows="8" cols="40"></textarea> <br />
         </div>
     </div>
     <button type="button" onclick="addingWeapon()">+</button>
