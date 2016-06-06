@@ -113,7 +113,7 @@ function addingWeapon() {
             //     ['header' => $_POST['home_header'],
             //      'content' => $_POST['home_content']]);
             var_dump($_FILES['weapon_pictures']);
-            var_dump($_FILES['weapon_names']);
+            var_dump($_POST['weapon_names']);
             var_dump($_POST['weapon_descriptions']);
         }
 
