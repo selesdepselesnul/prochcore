@@ -38,7 +38,7 @@ function addingWeapon() {
     <div id="weapons">
         <div id="weaponGroup1">
             <img src="" id="weaponPreview1"/> <br/>
-            <input type="file" name="weapon_1" onchange="readURL(this)"> <br />
+            <input type="file" name="weaponpictures[]" onchange="readURL(this)"> <br />
             <textarea name="weapon_description_1" rows="8" cols="40"></textarea> <br />
         </div>
     </div>
