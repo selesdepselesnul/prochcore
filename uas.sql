@@ -32,7 +32,7 @@ CREATE TABLE Home (
 	id TINYINT PRIMARY KEY,
 	header TEXT,
 	content TEXT,
-	image LONGTEXT
+	image TEXT
 );
 
 INSERT INTO Home

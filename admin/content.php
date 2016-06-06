@@ -16,7 +16,6 @@ function readURL(input) {
             const weaponPreview = document.getElementById('weaponPreview'+idNumber);
             weaponPreview.src = e.target.result;
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -109,12 +108,43 @@ function addingWeapon() {
             && isset($_FILES['weapon_pictures'])
             && isset($_POST['weapon_names'])
             && isset($_POST['weapon_descriptions'])) {
+
+            $weapons = [];
             // update_content('Home',
             //     ['header' => $_POST['home_header'],
             //      'content' => $_POST['home_content']]);
-            var_dump($_FILES['weapon_pictures']);
-            var_dump($_POST['weapon_names']);
-            var_dump($_POST['weapon_descriptions']);
+
+            $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
+            $weapon_tmp_pictures = $_FILES['weapon_pictures']['tmp_name'];
+            $weapon_names =  $_FILES['weapon_pictures']['name'];
+            $weapon_descriptions = $_POST['weapon_descriptions'];
+            $weapon_img_html = '';
+            foreach ($weapon_pictures_error as $i => $err) {
+                if($err == UPLOAD_ERR_OK) {
+                    $relative_pic = 'images/weapons/'.$weapon_names[$i];
+                    $pic = $_SERVER['DOCUMENT_ROOT']
+                        .'/'.$config['project_root'].'/'
+                        .$relative_pic;
+                    $desc = $weapon_descriptions[$i];
+                    move_uploaded_file(
+                        $weapon_tmp_pictures[$i],
+                        $pic
+                    );
+
+                    $full_path_img = $config['base_url'].$relative_pic;
+
+                    $img_html = htmlspecialchars("<div class='img'>
+                            <a target='_blank' href='$full_path_img'>
+                            <img src='$full_path_img' class='img'>
+                            </a><div class='desc'>$desc</div></div>");
+
+                    // echo $img_html;
+                    $weapon_img_html.=$img_html;
+                    echo $full_path_img . '<br />';
+
+                }
+            }
+            update_content('Home' , ['image' => $weapon_img_html]);
         }
 
         if(isset($_POST['about_header'])

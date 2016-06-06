@@ -5,7 +5,7 @@
 	<div class="home" id="home" class="main">
 			<h1><?php echo $content['home']['header'] ?></h1> <br />
 			<?php echo $content['home']['content'] ?>
-			<?php echo $content['home']['image'] ?>
+			<?php echo htmlspecialchars_decode($content['home']['image']) ?>
 	</div>
 
 	<div id="about" class="main">

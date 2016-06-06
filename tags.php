@@ -24,12 +24,13 @@ $content['about'] = _read_assoc('About');
 $content['contact'] = _read_assoc('Contact');
 
 function update_content($content, $fields) {
+    // var_dump($fields);
     _do_connection(function($connection) use($content, $fields){
         $query="UPDATE $content SET ";
         foreach ($fields as $key => $value)
-            $query .= $key ."='".$value."',";
+            $query .= $key .'="'.$value.'",';
         $query = rtrim($query, ',');
-        $query .= ' WHERE id = 1;';
+        $query .= '  WHERE id = 1;';
         mysqli_query($connection, $query);
     });
 }
