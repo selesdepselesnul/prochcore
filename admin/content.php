@@ -2,12 +2,48 @@
 require_once '../header.php';
 require_once '../tags.php';
 ?>
-<form method="post">
+<script type="text/javascript">
+var counter = 1;
+
+function readURL(input) {
+    const idNumber = input.name.split('_').pop();
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            const weaponPreview = document.getElementById('weaponPreview'+idNumber);
+            weaponPreview.src = e.target.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function addingWeapon() {
+    counter++;
+    const div = document.createElement('div');
+    div.id = 'weaponGroup'+counter;
+    const weapons = document.getElementById('weapons');
+    weapons.appendChild(div);
+}
+
+</script>
+<form method="post" name="contact" runat="server">
     <h2>Home</h2>
     <label for="home_header">Header</label>
     <input type="text" name="home_header" value="<?php echo $content['home']['header']?>"> <br />
     <label for="home_content">Content</label>
     <textarea name="home_content" rows="8" cols="40"><?php echo $content['home']['content']?></textarea> <br />
+    <div id="weapons">
+        <div id="weaponGroup1">
+            <img src="" id="weaponPreview1"/> <br/>
+            <input type="file" name="weapon_1" onchange="readURL(this)"> <br />
+            <textarea name="weapon_description_1" rows="8" cols="40"></textarea> <br />
+        </div>
+    </div>
+    <button type="button" onclick="addingWeapon()">+</button>
+    <button type="button">-</button>
     <hr />
     <h2>About</h2>
     <label for="about_header">Header</label>
@@ -61,3 +97,6 @@ require_once '../tags.php';
     }
 
 ?>
+</div> <!-- close container -->
+</body>
+</html>
