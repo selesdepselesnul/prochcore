@@ -7,7 +7,7 @@ if(!empty($_POST['username'])
 	&& !empty($_POST['fullname']))
 
 	mysqli_query(
-		$mysqli,
+		$config['mysqli'],
 		"UPDATE Admin
 		SET
 		username='{$_POST['username']}',
@@ -16,9 +16,9 @@ if(!empty($_POST['username'])
 		fullname='{$_POST['fullname']}'
 		WHERE id=1;");
 
-$result = mysqli_query($mysqli, 'SELECT * FROM Admin;');
+$result = mysqli_query($config['mysqli'], 'SELECT * FROM Admin WHERE id = 1;');
 $admin = mysqli_fetch_assoc($result);
-mysqli_close($mysqli);
+mysqli_close($config['mysqli']);
 ?>
 <form method="POST">
 	<label for="username">Username</label>
