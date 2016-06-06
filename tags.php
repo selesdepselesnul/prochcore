@@ -1,14 +1,22 @@
 <?php
-function _read_assoc($content) {
+
+function _do_connection($mysql_action) {
     $mysqli = mysqli_connect(
-    			"127.0.0.1",
-    			"root",
-    			"indonesiaraya",
-    			"uas");
-    $q = mysqli_query($mysqli, "SELECT * FROM $content WHERE id = 1;");
-    $assoc = mysqli_fetch_assoc($q);
+                "127.0.0.1",
+                "root",
+                "indonesiaraya",
+                "uas");
+    $result = $mysql_action($mysqli);
     mysqli_close($mysqli);
-    return $assoc;
+    return $result;
+}
+
+function _read_assoc($content) {
+    return _do_connection(function($connection) use($content){
+        $q = mysqli_query($connection, "SELECT * FROM $content WHERE id = 1;");
+        $result = mysqli_fetch_assoc($q);
+        return $result;
+    });
 }
 
 $_content['home'] = _read_assoc('Home');
@@ -21,16 +29,12 @@ function read_content($content, $section) {
 }
 
 function update_content($content, $fields) {
-    $mysqli = mysqli_connect(
-    			"127.0.0.1",
-    			"root",
-    			"indonesiaraya",
-    			"uas");
-    $query="UPDATE $content SET ";
-    foreach ($fields as $key => $value)
-        $query .= $key ."='".$value."',";
-    $query = rtrim($query, ',');
-    $query .= ' WHERE id = 1;';
-    mysqli_query($mysqli, $query);
-    mysqli_close($mysqli);
+    _do_connection(function($connection) use($content, $fields){
+        $query="UPDATE $content SET ";
+        foreach ($fields as $key => $value)
+            $query .= $key ."='".$value."',";
+        $query = rtrim($query, ',');
+        $query .= ' WHERE id = 1;';
+        mysqli_query($connection, $query);
+    });
 }
