@@ -3,31 +3,31 @@
 	require_once 'tags.php';
 ?>
 	<div class="home" id="home" class="main">
-			<h1><?php read_content('home', 'header') ?></h1> <br />
-			<?php read_content('home', 'content') ?>
-			<?php read_content('home', 'image') ?>
+			<h1><?php echo $content['home']['header'] ?></h1> <br />
+			<?php echo $content['home']['content'] ?>
+			<?php echo $content['home']['image'] ?>
 	</div>
 
 	<div id="about" class="main">
-		<h1><?php read_content('about', 'header') ?></h1>
-		<?php read_content('about', 'content') ?>
+		<h1><?php echo $content['about']['header'] ?></h1>
+		<?php echo $content['about']['content'] ?>
 	</div>
 
 	<div id="contact" class="main">
-		<h1><?php read_content('contact', 'header') ?></h1>
+		<h1><?php echo $content['contact']['header'] ?></h1>
 		<br/>
 		<br/>
 		<address>
-			<h2><?php read_content('contact', 'address_header') ?></h2><br/>
-			<?php read_content('contact', 'address_content') ?>
+			<h2><?php echo $content['contact']['address_header'] ?></h2><br/>
+			<?php echo $content['contact']['address_content'] ?>
 		</address>
 		<div id="socialMedia">
-			<h2><?php read_content('contact', 'social_media_header') ?></h2> <br />
-			<?php read_content('contact', 'social_media_content') ?>
+			<h2><?php echo $content['contact']['social_media_header'] ?></h2> <br />
+			<?php echo $content['contact']['social_media_content'] ?>
 		</div>
 
 		<form method="POST" action="" id="contactForm">
-			<h2><?php read_content('contact', 'form_header') ?></h2><br/>
+			<h2><?php echo $content['contact']['form_header'] ?></h2><br/>
 			<label for="name">Name</label><br/>
 			<input type="text" name="name" class="input" /> <br/>
 			<label for="email">E-Mail</label><br/>

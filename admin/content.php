@@ -5,9 +5,9 @@ require_once '../tags.php';
 <form method="post">
     <h2>Home</h2>
     <label for="home_header">Header</label>
-    <input type="text" name="home_header" value=""> <br />
+    <input type="text" name="home_header" value="<?php echo $content['home']['header']?>"> <br />
     <label for="home_content">Content</label>
-    <textarea name="home_content" rows="8" cols="40"></textarea> <br />
+    <textarea name="home_content" rows="8" cols="40"><?php echo $content['home']['content']?></textarea> <br />
     <hr />
     <h2>About</h2>
     <label for="about_header">Header</label>

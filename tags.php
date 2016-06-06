@@ -19,14 +19,9 @@ function _read_assoc($content) {
     });
 }
 
-$_content['home'] = _read_assoc('Home');
-$_content['about'] = _read_assoc('About');
-$_content['contact'] = _read_assoc('Contact');
-
-function read_content($content, $section) {
-    global $_content;
-    echo $_content[$content][$section];
-}
+$content['home'] = _read_assoc('Home');
+$content['about'] = _read_assoc('About');
+$content['contact'] = _read_assoc('Contact');
 
 function update_content($content, $fields) {
     _do_connection(function($connection) use($content, $fields){
