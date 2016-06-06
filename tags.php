@@ -19,12 +19,20 @@ function _read_assoc($content) {
     });
 }
 
+function _read_all_assoc($content) {
+    return _do_connection(function($connection) use($content){
+        $q = mysqli_query($connection, "SELECT * FROM $content;");
+        $result = mysqli_fetch_assoc($q);
+        return $result;
+    });
+}
+
 $content['home'] = _read_assoc('Home');
 $content['about'] = _read_assoc('About');
 $content['contact'] = _read_assoc('Contact');
+$content['homeweapon'] = _read_all_assoc('HomeWeapon');
 
 function update_content($content, $fields) {
-    // var_dump($fields);
     _do_connection(function($connection) use($content, $fields){
         $query="UPDATE $content SET ";
         foreach ($fields as $key => $value)
@@ -32,5 +40,22 @@ function update_content($content, $fields) {
         $query = rtrim($query, ',');
         $query .= '  WHERE id = 1;';
         mysqli_query($connection, $query);
+    });
+}
+
+function write_content($content, $fields) {
+    _do_connection(function($connection) use($content, $fields){
+        $query="INSERT INTO $content ";
+        $keys = "(";
+        $values = "(";
+        foreach ($fields as $key => $value) {
+            $keys .= $key .',';
+            $values .= ' "' . $value . '",';
+        }
+        $keys_query = $query . rtrim($keys, ',') . ' ) ';
+        $values_query = 'VALUES' . rtrim($values, ',') . ' );';
+
+        echo $keys_query . $values_query;
+        mysqli_query($connection, $keys_query . $values_query);
     });
 }

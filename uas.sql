@@ -31,9 +31,9 @@ DROP TABLE IF EXISTS Home;
 CREATE TABLE Home (
 	id TINYINT PRIMARY KEY,
 	header TEXT,
-	content TEXT,
-	image TEXT
+	content TEXT
 );
+
 
 INSERT INTO Home
 VALUES (
@@ -43,41 +43,50 @@ VALUES (
 	we use the best nuclear product made in Russian Federation,
 	Here are just some list of our best nuclear weapon,
 	also in the last list you can check our first ever made nuclear weapon,
-	Made in Indonesia nuclear !',
-	'<div class="img">
-		<a target="_blank" href="images/topol-m.jpg">
-			<img src="images/topol-m.jpg" class="img">
-		</a>
-		<div class="desc">RT-2PM2 Topol-M TEL with presumably Yars system
-			transport-launch container during the first rehearsal for the Victory
-			Day Parade at the training ground in Alabino.
-		</div>
-	</div>
-	<div class="img">
-		<a target="_blank" href="images/rs-24.jpg">
-			<img src="images/rs-24.jpg" class="img">
-		</a>
-		<div class="desc">The RS-24 Yars also known as RT-24 Yars or
-			Topol-MR (Russian: PC-24 «Ярс», NATO reporting name: SS-27 Mod 2)
-		</div>
-	</div>
-	<div class="img">
-		<a target="_blank" href="images/r36-m.jpg">
-			<img src="images/r36-m.jpg" class="img">
-		</a>
-		<div class="desc">R-36M; NATO reporting name: SS-18 Satan.</div>
-	</div>
-	<div class="img">
-		<a target="_blank" href="images/bom-gas.jpg">
-			<img src="images/bom-gas.jpg" class="img">
-		</a>
-		<div class="desc">
-			first ever made nuclear weapon <br/>
-			from Our Country Indonesia, russian call it <br/>
-			The Migthy Green and NATO call it The Kitchen SWAGGER,
-			it has official name gas nuclear.
-		</div>
-	</div>'
+	Made in Indonesia nuclear !'
+);
+
+-- '<div class="img">
+-- 	<a target="_blank" href="images/topol-m.jpg">
+-- 		<img src="images/topol-m.jpg" class="img">
+-- 	</a>
+-- 	<div class="desc">RT-2PM2 Topol-M TEL with presumably Yars system
+-- 		transport-launch container during the first rehearsal for the Victory
+-- 		Day Parade at the training ground in Alabino.
+-- 	</div>
+-- </div>
+-- <div class="img">
+-- 	<a target="_blank" href="images/rs-24.jpg">
+-- 		<img src="images/rs-24.jpg" class="img">
+-- 	</a>
+-- 	<div class="desc">The RS-24 Yars also known as RT-24 Yars or
+-- 		Topol-MR (Russian: PC-24 «Ярс», NATO reporting name: SS-27 Mod 2)
+-- 	</div>
+-- </div>
+-- <div class="img">
+-- 	<a target="_blank" href="images/r36-m.jpg">
+-- 		<img src="images/r36-m.jpg" class="img">
+-- 	</a>
+-- 	<div class="desc">R-36M; NATO reporting name: SS-18 Satan.</div>
+-- </div>
+-- <div class="img">
+-- 	<a target="_blank" href="images/bom-gas.jpg">
+-- 		<img src="images/bom-gas.jpg" class="img">
+-- 	</a>
+-- 	<div class="desc">
+-- 		first ever made nuclear weapon <br/>
+-- 		from Our Country Indonesia, russian call it <br/>
+-- 		The Migthy Green and NATO call it The Kitchen SWAGGER,
+-- 		it has official name gas nuclear.
+-- 	</div>
+-- </div>'
+
+
+
+DROP TABLE IF EXISTS HomeWeapon;
+CREATE TABLE HomeWeapon (
+	image_path TEXT,
+	description TEXT
 );
 
 
