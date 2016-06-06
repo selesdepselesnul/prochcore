@@ -12,6 +12,7 @@
 		<h1><?php read_content('about', 'header') ?></h1>
 		<?php read_content('about', 'content') ?>
 	</div>
+
 	<div id="contact" class="main">
 		<h1><?php read_content('contact', 'header') ?></h1>
 		<br/>
@@ -37,8 +38,10 @@
 		</form>
 	</div>
 	<br/>
+
 <script src="index.js">
 </script>
+
 <?php
 require_once 'footer.php';
 ?>
