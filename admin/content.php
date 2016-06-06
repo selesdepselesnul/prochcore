@@ -33,34 +33,39 @@ function addingWeapon() {
     weaponPreviewImg.id='weaponPreview'+counter;
     weaponPreviewImg.src = '';
 
-
-    const br = document.createElement('br');
+    // weapon name
+    const weaponNameInput = document.createElement('input');
+    weaponNameInput.type = 'text';
+    weaponNameInput.name = 'weapon_names[]';
 
     // weapon input file
     const weaponInputFile = document.createElement('input');
     weaponInputFile.type = 'file';
-    weaponInputFile.name= 'weaponpictures[]';
+    weaponInputFile.name= 'weapon_pictures[]';
     weaponInputFile.id = 'weapon_picture_'+counter;
     weaponInputFile.setAttribute('onchange', 'readURL(this)');
 
+    // weapon desc
     const weaponDescTextArea = document.createElement('textarea');
     weaponDescTextArea.name = 'weapon_descriptions[]';
     weaponDescTextArea.rows = 8;
     weaponDescTextArea.cols = 40;
 
     div.appendChild(weaponPreviewImg);
-    div.appendChild(br);
+    div.appendChild(document.createElement('br'));
+    div.appendChild(weaponNameInput);
+    div.appendChild(document.createElement('br'));
     div.appendChild(weaponInputFile);
-    div.appendChild(br);
+    div.appendChild(document.createElement('br'));
     div.appendChild(weaponDescTextArea);
-    div.appendChild(br);
+    div.appendChild(document.createElement('br'));
 
     const weapons = document.getElementById('weapons');
     weapons.appendChild(div);
 }
 
 </script>
-<form method="post" name="contact" runat="server">
+<form method="post" name="contact" enctype="multipart/form-data">
     <h2>Home</h2>
     <label for="home_header">Header</label>
     <input type="text" name="home_header" value="<?php echo $content['home']['header']?>"> <br />
@@ -69,7 +74,8 @@ function addingWeapon() {
     <div id="weapons">
         <div id="weaponGroup1">
             <img src="" id="weaponPreview1"/> <br/>
-            <input type="file" name="weaponpictures[]" id="weapon_picture_1" onchange="readURL(this)"> <br />
+            <input type="text" name="weapon_names[]"> <br />
+            <input type="file" name="weapon_pictures[]" id="weapon_picture_1" onchange="readURL(this)"> <br />
             <textarea name="weapon_descriptions[]" rows="8" cols="40"></textarea> <br />
         </div>
     </div>
@@ -99,10 +105,16 @@ function addingWeapon() {
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST['home_header'])
-            && isset($_POST['home_content'])) {
-            update_content('Home',
-                ['header' => $_POST['home_header'],
-                 'content' => $_POST['home_content']]);
+            && isset($_POST['home_content'])
+            && isset($_FILES['weapon_pictures'])
+            && isset($_POST['weapon_names'])
+            && isset($_POST['weapon_descriptions'])) {
+            // update_content('Home',
+            //     ['header' => $_POST['home_header'],
+            //      'content' => $_POST['home_content']]);
+            var_dump($_FILES['weapon_pictures']);
+            var_dump($_FILES['weapon_names']);
+            var_dump($_POST['weapon_descriptions']);
         }
 
         if(isset($_POST['about_header'])
@@ -124,7 +136,7 @@ function addingWeapon() {
                  'social_media_header' => $_POST['contact_social_media_header'],
                  'form_header' => $_POST['contact_form_header']]);
         }
-        header("refresh: 0;");
+
     }
 
 ?>
