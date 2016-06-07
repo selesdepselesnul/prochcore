@@ -32,11 +32,6 @@ function addingWeapon() {
     weaponPreviewImg.id='weaponPreview'+counter;
     weaponPreviewImg.src = '';
 
-    // weapon name
-    const weaponNameInput = document.createElement('input');
-    weaponNameInput.type = 'text';
-    weaponNameInput.name = 'weapon_names[]';
-
     // weapon input file
     const weaponInputFile = document.createElement('input');
     weaponInputFile.type = 'file';
@@ -51,8 +46,6 @@ function addingWeapon() {
     weaponDescTextArea.cols = 40;
 
     div.appendChild(weaponPreviewImg);
-    div.appendChild(document.createElement('br'));
-    div.appendChild(weaponNameInput);
     div.appendChild(document.createElement('br'));
     div.appendChild(weaponInputFile);
     div.appendChild(document.createElement('br'));
@@ -73,7 +66,6 @@ function addingWeapon() {
     <div id="weapons">
         <div id="weaponGroup1">
             <img src="" id="weaponPreview1"/> <br/>
-            <input type="text" name="weapon_names[]"> <br />
             <input type="file" name="weapon_pictures[]" id="weapon_picture_1" onchange="readURL(this)"> <br />
             <textarea name="weapon_descriptions[]" rows="8" cols="40"></textarea> <br />
         </div>
@@ -105,9 +97,8 @@ function addingWeapon() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST['home_header'])
             && isset($_POST['home_content'])
-            && isset($_FILES['weapon_pictures'])
-            && isset($_POST['weapon_names'])
-            && isset($_POST['weapon_descriptions'])) {
+            && isset($_POST['weapon_descriptions'])
+            && isset($_FILES['weapon_pictures'])) {
 
             $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
             $weapon_tmp_pictures = $_FILES['weapon_pictures']['tmp_name'];
