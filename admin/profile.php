@@ -1,4 +1,6 @@
 <?php
+require_once '../tags.php';
+redirectIfNotLogin();
 require_once '../header.php';
 
 if(!empty($_POST['username'])

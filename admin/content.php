@@ -1,80 +1,82 @@
 <?php
-require_once '../header.php';
 require_once '../tags.php';
+redirectIfNotLogin();
+require_once '../header.php';
 ?>
+
 <script type="text/javascript">
-var counter = 0;
+    var counter = 0;
 
-function readURL(input) {
-    const idNumber = input.id.split('_').pop();
+    function readURL(input) {
+        const idNumber = input.id.split('_').pop();
 
-    console.log(idNumber);
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        console.log(idNumber);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-        reader.onload = function (e) {
-            const weaponPreview = document.getElementById('weaponPreview'+idNumber);
-            weaponPreview.src = e.target.result;
+            reader.onload = function (e) {
+                const weaponPreview = document.getElementById('weaponPreview'+idNumber);
+                weaponPreview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
         }
-        reader.readAsDataURL(input.files[0]);
     }
-}
 
-function removingWeapon(e) {
-    const weapons = document.getElementById('weapons');
+    function removingWeapon(e) {
+        const weapons = document.getElementById('weapons');
 
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = 'weapons_deleted[]';
-    hiddenInput.value = e.id;
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'weapons_deleted[]';
+        hiddenInput.value = e.id;
 
-    weapons.appendChild(hiddenInput);
-    weapons.removeChild(e.parentElement);
-};
+        weapons.appendChild(hiddenInput);
+        weapons.removeChild(e.parentElement);
+    };
 
-function addingWeapon() {
-    counter++;
+    function addingWeapon() {
+        counter++;
 
-    // div container of weapon
-    const div = document.createElement('div');
-    div.id = 'weapon_group_'+counter;
+        // div container of weapon
+        const div = document.createElement('div');
+        div.id = 'weapon_group_'+counter;
 
-    // div img
-    const divImg = document.createElement('div');
-    divImg.className = 'img';
+        // div img
+        const divImg = document.createElement('div');
+        divImg.className = 'img';
 
-    // weapon img
-    const weaponPreviewImg = document.createElement('img');
-    weaponPreviewImg.id='weaponPreview'+counter;
-    weaponPreviewImg.src = '';
-    weaponPreviewImg.className = 'img';
+        // weapon img
+        const weaponPreviewImg = document.createElement('img');
+        weaponPreviewImg.id='weaponPreview'+counter;
+        weaponPreviewImg.src = '';
+        weaponPreviewImg.className = 'img';
 
-    divImg.appendChild(weaponPreviewImg);
+        divImg.appendChild(weaponPreviewImg);
 
 
-    // weapon input file
-    const weaponInputFile = document.createElement('input');
-    weaponInputFile.type = 'file';
-    weaponInputFile.name= 'weapon_pictures[]';
-    weaponInputFile.id = 'weapon_picture_'+counter;
-    weaponInputFile.setAttribute('onchange', 'readURL(this)');
+        // weapon input file
+        const weaponInputFile = document.createElement('input');
+        weaponInputFile.type = 'file';
+        weaponInputFile.name= 'weapon_pictures[]';
+        weaponInputFile.id = 'weapon_picture_'+counter;
+        weaponInputFile.setAttribute('onchange', 'readURL(this)');
 
-    // weapon desc
-    const weaponDescTextArea = document.createElement('textarea');
-    weaponDescTextArea.name = 'weapon_descriptions[]';
-    weaponDescTextArea.rows = 8;
-    weaponDescTextArea.cols = 40;
+        // weapon desc
+        const weaponDescTextArea = document.createElement('textarea');
+        weaponDescTextArea.name = 'weapon_descriptions[]';
+        weaponDescTextArea.rows = 8;
+        weaponDescTextArea.cols = 40;
 
-    div.appendChild(divImg);
-    div.appendChild(document.createElement('br'));
-    div.appendChild(weaponInputFile);
-    div.appendChild(document.createElement('br'));
-    div.appendChild(weaponDescTextArea);
-    div.appendChild(document.createElement('br'));
+        div.appendChild(divImg);
+        div.appendChild(document.createElement('br'));
+        div.appendChild(weaponInputFile);
+        div.appendChild(document.createElement('br'));
+        div.appendChild(weaponDescTextArea);
+        div.appendChild(document.createElement('br'));
 
-    const weapons = document.getElementById('weapons');
-    weapons.appendChild(div);
-}
+        const weapons = document.getElementById('weapons');
+        weapons.appendChild(div);
+    }
 
 </script>
 <form method="post" name="contact" enctype="multipart/form-data" id="configForm">

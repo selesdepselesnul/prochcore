@@ -1,11 +1,14 @@
 <?php
 require_once '../tags.php';
+require_once '../config.php';
     if(isset($_POST['username'])
         && isset($_POST['password'])) {
         $admin = read_dbase('Admin');
         if($_POST['username'] == $admin['username']
             && $_POST['password'] == $admin['password']) {
-            echo "cucok";
+            session_start();
+            $_SESSION['login'] = 1;
+            header('Location: '.$config['base_url'].'admin/content.php');
         }
     }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 function _do_connection($mysql_action) {
     $mysqli = mysqli_connect(
                 "127.0.0.1",
@@ -69,4 +68,16 @@ function delete_content($content, $col, $val) {
         $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);
     });
+}
+
+function redirectIfNotLogin() {
+    if(!isset($_SESSION['login'])) {
+        require_once '../config.php';
+        $base_url = $config['base_url'];
+        echo "
+            <script>
+                window.location.href = '$base_url';
+            </script>
+        ";
+    }
 }
