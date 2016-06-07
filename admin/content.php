@@ -128,7 +128,7 @@ function addingWeapon() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST['weapons_deleted'])) {
             foreach ($_POST['weapons_deleted'] as $weapon_path) {
-                delete_home_weapon('image_path', $weapon_path);
+                delete_content('HomeWeapon', 'image_path', $weapon_path);
             }
         }
 

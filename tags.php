@@ -64,9 +64,9 @@ function write_content($content, $fields) {
     });
 }
 
-function delete_home_weapon($col, $val) {
-    _do_connection(function($connection) use($col, $val) {
-        $query = "DELETE FROM HomeWeapon WHERE $col = '$val';";
+function delete_content($content, $col, $val) {
+    _do_connection(function($connection) use($content, $col, $val) {
+        $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);
     });
 }
