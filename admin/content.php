@@ -3,7 +3,7 @@ require_once '../header.php';
 require_once '../tags.php';
 ?>
 <script type="text/javascript">
-var counter = 1;
+var counter = 0;
 
 function readURL(input) {
     const idNumber = input.id.split('_').pop();
@@ -25,7 +25,7 @@ function addingWeapon() {
 
     // div container of weapon
     const div = document.createElement('div');
-    div.id = 'weaponGroup'+counter;
+    div.id = 'weapon_group_'+counter;
 
     // div img
     const divImg = document.createElement('div');
@@ -73,7 +73,7 @@ function addingWeapon() {
     <textarea name="home_content" rows="8" cols="40"><?php echo $content['home']['content']?></textarea> <br />
     <div id="weapons">
         <?php foreach ($content['homeweapon'] as $i => $home_weapon): ?>
-            <div id="weaponGroup<?php echo $i+1 ?>">
+            <div id="weapon_group_<?php echo $i+1 ?>">
                 <div class="img">
                     <img id="weaponPreview<?php echo $i+1 ?>"
                         src="<?php echo $home_weapon['image_path']?>" class="img"><br/>
@@ -83,7 +83,7 @@ function addingWeapon() {
                 <input type="file" name="weapon_pictures[]"
                        id="weapon_picture_<?php echo $i+1 ?>"
                        onchange="readURL(this)"> <br />
-                <textarea name="weapon_descriptions[]" rows="8" cols="40">
+                <textarea name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
                 </textarea><br />
             </div>
         <?php endforeach; ?>
@@ -124,7 +124,7 @@ function addingWeapon() {
             $weapon_descriptions = $_POST['weapon_descriptions'];
             $full_path_img = [];
 
-            delete_content('HomeWeapon');
+            // delete_content('HomeWeapon');
             foreach ($weapon_pictures_error as $i => $err) {
                 if($err == UPLOAD_ERR_OK) {
                     $relative_pic = 'images/weapons/'.$weapon_names[$i];
@@ -142,7 +142,6 @@ function addingWeapon() {
                         'description' => $weapon_descriptions[$i]]);
                 }
             }
-
 
         }
 
@@ -166,9 +165,14 @@ function addingWeapon() {
                  'form_header' => $_POST['contact_form_header']]);
         }
 
+
     }
 
 ?>
 </div> <!-- close container -->
+<script>
+    const lastWeapon = document.getElementById('weapons').lastElementChild;
+    counter = lastWeapon.id.split('_').pop();
+</script>
 </body>
 </html>
