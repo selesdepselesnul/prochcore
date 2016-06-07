@@ -1,40 +1,4 @@
 <?php
-require_once '../header.php';
-
-if(!empty($_POST['username'])
-	&& !empty($_POST['password'])
-	&& !empty($_POST['email'])
-	&& !empty($_POST['fullname']))
-
-	mysqli_query(
-		$config['mysqli'],
-		"UPDATE Admin
-		SET
-		username='{$_POST['username']}',
-		password='{$_POST['password']}',
-		email='{$_POST['email']}',
-		fullname='{$_POST['fullname']}'
-		WHERE id=1;");
-
-$result = mysqli_query($config['mysqli'], 'SELECT * FROM Admin WHERE id = 1;');
-$admin = mysqli_fetch_assoc($result);
-mysqli_close($config['mysqli']);
-?>
-<form method="POST">
-	<label for="username">Username</label>
-	<input type="text" name="username"
-		   value="<?php echo $admin['username']?>" /> <br />
-	<label for="password">Password</label>
-	<input type="password" name="password"
-			value="<?php echo $admin['password']?>" /> <br />
-	<label for="email">Email</label>
-	<input type="email" name="email"
-			value="<?php echo $admin['email']?>" /> <br />
-	<label for="fullname">Fullname</label>
-	<input type="text" name="fullname"
-			value="<?php echo $admin['fullname']?>"/> <br />
-	<input type="submit">
-</form>
-<?php
-require_once '../footer.php';
+require_once '../config.php';
+header('Location: ' . $config['base_url']);
 ?>
