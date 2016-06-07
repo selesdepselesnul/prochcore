@@ -115,6 +115,7 @@ function addingWeapon() {
             $weapon_descriptions = $_POST['weapon_descriptions'];
             $full_path_img = [];
 
+            delete_content('HomeWeapon');
             foreach ($weapon_pictures_error as $i => $err) {
                 if($err == UPLOAD_ERR_OK) {
                     $relative_pic = 'images/weapons/'.$weapon_names[$i];

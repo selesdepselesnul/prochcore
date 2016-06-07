@@ -20,10 +20,14 @@ function _read_assoc($content) {
 }
 
 function _read_all_assoc($content) {
-    return _do_connection(function($connection) use($content){
-        $q = mysqli_query($connection, "SELECT * FROM $content;");
-        $result = mysqli_fetch_assoc($q);
-        return $result;
+    return _do_connection(function($connection) use($content) {
+        $rows = [];
+        if ($result = mysqli_query($connection, "SELECT * FROM $content;")) {
+            while ($row = mysqli_fetch_assoc($result))
+                $rows[] = $row;
+            mysqli_free_result($result);
+        }
+        return $rows;
     });
 }
 
@@ -57,5 +61,12 @@ function write_content($content, $fields) {
 
         echo $keys_query . $values_query;
         mysqli_query($connection, $keys_query . $values_query);
+    });
+}
+
+function delete_content($content) {
+    _do_connection(function($connection) use($content) {
+        $query = 'DELETE FROM ' . $content . ';';
+        mysqli_query($connection, $query);
     });
 }
