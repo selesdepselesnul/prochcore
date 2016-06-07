@@ -21,7 +21,15 @@ function readURL(input) {
 }
 
 function removingWeapon(e) {
-    console.log(e.id.split('_').pop());
+    const weapons = document.getElementById('weapons');
+
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'weapons_deleted[]';
+    hiddenInput.value = e.id;
+
+    weapons.appendChild(hiddenInput);
+    weapons.removeChild(e.parentElement);
 };
 
 function addingWeapon() {
@@ -69,7 +77,7 @@ function addingWeapon() {
 }
 
 </script>
-<form method="post" name="contact" enctype="multipart/form-data">
+<form method="post" name="contact" enctype="multipart/form-data" id="configForm">
     <h2>Home</h2>
     <label for="home_header">Header</label>
     <input type="text" name="home_header" value="<?php echo $content['home']['header']?>"> <br />
@@ -83,7 +91,8 @@ function addingWeapon() {
                         src="<?php echo $home_weapon['image_path']?>" class="img">
                 </div>
 
-                <button type="button" onclick="removingWeapon(this)" id="weapon_removing_<?php echo $home_weapon['id'] ?>">-</button>
+                <button type="button" onclick="removingWeapon(this)"
+                    id="<?php echo $home_weapon['image_path'] ?>">-</button>
                 <input type="file" name="weapon_pictures[]"
                        id="weapon_picture_<?php echo $i+1 ?>"
                        onchange="readURL(this)"> <br />
@@ -117,10 +126,19 @@ function addingWeapon() {
 
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if(isset($_POST['weapons_deleted'])) {
+            foreach ($_POST['weapons_deleted'] as $weapon_path) {
+                delete_content('HomeWeapon', 'image_path', $weapon_path);
+            }
+        }
+
         if(isset($_POST['home_header'])
             && isset($_POST['home_content'])
             && isset($_POST['weapon_descriptions'])
             && isset($_FILES['weapon_pictures'])) {
+
+
+
 
             $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
             $weapon_tmp_pictures = $_FILES['weapon_pictures']['tmp_name'];

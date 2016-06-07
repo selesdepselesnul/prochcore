@@ -64,9 +64,9 @@ function write_content($content, $fields) {
     });
 }
 
-function delete_content($content) {
-    _do_connection(function($connection) use($content) {
-        $query = 'DELETE FROM ' . $content . ';';
+function delete_content($content, $col, $val) {
+    _do_connection(function($connection) use($content, $col, $val) {
+        $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);
     });
 }

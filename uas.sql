@@ -81,11 +81,8 @@ VALUES (
 -- 	</div>
 -- </div>'
 
-
-
 DROP TABLE IF EXISTS HomeWeapon;
 CREATE TABLE HomeWeapon (
-	id BIGINT PRIMARY KEY AUTO_INCREMENT,
 	image_path TEXT,
 	description TEXT
 );
