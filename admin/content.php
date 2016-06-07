@@ -27,10 +27,18 @@ function addingWeapon() {
     const div = document.createElement('div');
     div.id = 'weaponGroup'+counter;
 
+    // div img
+    const divImg = document.createElement('div');
+    divImg.className = 'img';
+
     // weapon img
     const weaponPreviewImg = document.createElement('img');
     weaponPreviewImg.id='weaponPreview'+counter;
     weaponPreviewImg.src = '';
+    weaponPreviewImg.className = 'img';
+
+    divImg.appendChild(weaponPreviewImg);
+
 
     // weapon input file
     const weaponInputFile = document.createElement('input');
@@ -45,7 +53,7 @@ function addingWeapon() {
     weaponDescTextArea.rows = 8;
     weaponDescTextArea.cols = 40;
 
-    div.appendChild(weaponPreviewImg);
+    div.appendChild(divImg);
     div.appendChild(document.createElement('br'));
     div.appendChild(weaponInputFile);
     div.appendChild(document.createElement('br'));
@@ -64,11 +72,21 @@ function addingWeapon() {
     <label for="home_content">Content</label>
     <textarea name="home_content" rows="8" cols="40"><?php echo $content['home']['content']?></textarea> <br />
     <div id="weapons">
-        <div id="weaponGroup1">
-            <img src="" id="weaponPreview1"/> <br/>
-            <input type="file" name="weapon_pictures[]" id="weapon_picture_1" onchange="readURL(this)"> <br />
-            <textarea name="weapon_descriptions[]" rows="8" cols="40"></textarea> <br />
-        </div>
+        <?php foreach ($content['homeweapon'] as $i => $home_weapon): ?>
+            <div id="weaponGroup<?php echo $i+1 ?>">
+                <div class="img">
+                    <img id="weaponPreview<?php echo $i+1 ?>"
+                        src="<?php echo $home_weapon['image_path']?>" class="img"><br/>
+                </div>
+
+                <br/>
+                <input type="file" name="weapon_pictures[]"
+                       id="weapon_picture_<?php echo $i+1 ?>"
+                       onchange="readURL(this)"> <br />
+                <textarea name="weapon_descriptions[]" rows="8" cols="40">
+                </textarea><br />
+            </div>
+        <?php endforeach; ?>
     </div>
     <button type="button" onclick="addingWeapon()">+</button>
     <button type="button">-</button>
@@ -120,7 +138,7 @@ function addingWeapon() {
 
                     $full_path_img[] = $config['base_url'].$relative_pic;
                     write_content('HomeWeapon' , [
-                        'image_path' => $relative_pic,
+                        'image_path' => $config['base_url'].$relative_pic,
                         'description' => $weapon_descriptions[$i]]);
                 }
             }

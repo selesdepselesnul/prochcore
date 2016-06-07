@@ -5,25 +5,13 @@
 	<div class="home" id="home" class="main">
 			<h1><?php echo $content['home']['header'] ?></h1> <br />
 			<?php echo $content['home']['content'] ?>
-			 <!-- <div class="img">
-			 	<a target="_blank" href="images/topol-m.jpg">
-			 		<img src="images/topol-m.jpg" class="img">
-			 	</a>
-			 	<div class="desc">RT-2PM2 Topol-M TEL with presumably Yars system
-			 		transport-launch container during the first rehearsal for the Victory
-			 		Day Parade at the training ground in Alabino.
-			 	</div>
-			 </div> -->
-
-			<!-- <?php echo htmlspecialchars_decode($content['home']['image']) ?> -->
-
 			<?php foreach ($content['homeweapon'] as $home_weapon): ?>
 				<div class="img">
    			 		<img src="<?php echo $home_weapon['image_path']?>" class="img">
 					<a target="_blank" href="<?php echo $home_weapon['image_path']?>">
-   			 	</a>
-   			 	<div class="desc"><?php echo $home_weapon['description']?></div>
-   			 </div>
+   			 		</a>
+   			 		<div class="desc"><?php echo $home_weapon['description']?></div>
+   			 	</div>
 			<?php endforeach; ?>
 	</div>
 
