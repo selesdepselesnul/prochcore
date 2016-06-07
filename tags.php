@@ -11,7 +11,7 @@ function _do_connection($mysql_action) {
     return $result;
 }
 
-function _read_assoc($content) {
+function read_dbase($content) {
     return _do_connection(function($connection) use($content){
         $q = mysqli_query($connection, "SELECT * FROM $content WHERE id = 1;");
         $result = mysqli_fetch_assoc($q);
@@ -31,9 +31,9 @@ function _read_all_assoc($content) {
     });
 }
 
-$content['home'] = _read_assoc('Home');
-$content['about'] = _read_assoc('About');
-$content['contact'] = _read_assoc('Contact');
+$content['home'] = read_dbase('Home');
+$content['about'] = read_dbase('About');
+$content['contact'] = read_dbase('Contact');
 $content['homeweapon'] = _read_all_assoc('HomeWeapon');
 
 function update_content($content, $fields) {
