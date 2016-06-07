@@ -140,9 +140,6 @@ function addingWeapon() {
             && isset($_POST['weapon_descriptions'])
             && isset($_FILES['weapon_pictures'])) {
 
-
-
-
             $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
             $weapon_tmp_pictures = $_FILES['weapon_pictures']['tmp_name'];
             $weapon_names =  $_FILES['weapon_pictures']['name'];
