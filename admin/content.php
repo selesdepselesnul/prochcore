@@ -20,6 +20,10 @@ function readURL(input) {
     }
 }
 
+function removingWeapon(e) {
+    console.log(e.id.split('_').pop());
+};
+
 function addingWeapon() {
     counter++;
 
@@ -76,10 +80,10 @@ function addingWeapon() {
             <div id="weapon_group_<?php echo $i+1 ?>">
                 <div class="img">
                     <img id="weaponPreview<?php echo $i+1 ?>"
-                        src="<?php echo $home_weapon['image_path']?>" class="img"><br/>
+                        src="<?php echo $home_weapon['image_path']?>" class="img">
                 </div>
 
-                <br/>
+                <button type="button" onclick="removingWeapon(this)" id="weapon_removing_<?php echo $home_weapon['id'] ?>">-</button>
                 <input type="file" name="weapon_pictures[]"
                        id="weapon_picture_<?php echo $i+1 ?>"
                        onchange="readURL(this)"> <br />
@@ -89,7 +93,7 @@ function addingWeapon() {
         <?php endforeach; ?>
     </div>
     <button type="button" onclick="addingWeapon()">+</button>
-    <button type="button">-</button>
+
     <hr />
     <h2>About</h2>
     <label for="about_header">Header</label>
@@ -172,7 +176,8 @@ function addingWeapon() {
 </div> <!-- close container -->
 <script>
     const lastWeapon = document.getElementById('weapons').lastElementChild;
-    counter = lastWeapon.id.split('_').pop();
+    if(lastWeapon)
+        counter = lastWeapon.id.split('_').pop();
 </script>
 </body>
 </html>
