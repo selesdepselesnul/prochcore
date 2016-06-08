@@ -11,10 +11,23 @@ function _do_connection($mysql_action) {
 }
 
 function read_dbase($content) {
-    return _do_connection(function($connection) use($content){
+    return _do_connection(function($connection) use($content) {
         $q = mysqli_query($connection, "SELECT * FROM $content WHERE id = 1;");
         $result = mysqli_fetch_assoc($q);
         return $result;
+    });
+}
+
+function read_all_assoc_limit($table, $limit, $count) {
+    return _do_connection(function ($connection) use($table, $limit, $count) {
+        $rows = [];
+        if ($result = mysqli_query($connection,
+            "SELECT * FROM $table LIMIT $limit, $count;")) {
+            while ($row = mysqli_fetch_assoc($result))
+                $rows[] = $row;
+            mysqli_free_result($result);
+        }
+        return $rows;
     });
 }
 

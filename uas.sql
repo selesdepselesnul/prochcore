@@ -10,6 +10,51 @@ CREATE TABLE Inbox (
 	content TEXT
 );
 
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
+INSERT INTO Inbox (name, email, content)
+VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+
 DROP TABLE IF EXISTS Admin;
 CREATE TABLE Admin (
 	id TINYINT PRIMARY KEY,
