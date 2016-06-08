@@ -5,6 +5,7 @@ USE uas;
 DROP TABLE IF EXISTS Inbox;
 CREATE TABLE Inbox (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	message_time TIMESTAMP,
 	name TEXT,
 	email TEXT,
 	content TEXT
