@@ -15,6 +15,7 @@ if (isset($_GET['page'])) {
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Content</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,13 @@ if (isset($_GET['page'])) {
                     <td><?php echo $inbox['name'] ?></td>
                     <td><?php echo $inbox['email'] ?></td>
                     <td><?php echo $inbox['content'] ?></td>
+                    <td>
+                        <a
+                        href="<?php
+                        echo $config['base_url']
+                        . 'inbox.php?id='.$inbox['id'] ?>"
+                        >lebih lanjut</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
