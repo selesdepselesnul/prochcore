@@ -2,6 +2,11 @@
 	require_once 'header.php';
 	require_once 'function.php';
 
+	$home = read_table_by_id('Home', 1);
+	$about = read_table_by_id('About', 1);
+	$contact = read_table_by_id('Contact', 1);
+	$home_weapons = read_table('HomeWeapon');
+
 	if(!empty($_POST['name'])
 		&& !empty($_POST['email'])
 		&& !empty($_POST['content']))
@@ -10,15 +15,11 @@
 			'email' => $_POST['email'],
 			'content' => $_POST['content']
 		]);
-		$home = read_table_by_id('Home', 1);
-		$about = read_table_by_id('About', 1);
-		$contact = read_table_by_id('Contact', 1);
-		$homeweapon = read_table('HomeWeapon');
 ?>
 	<div class="home" id="home" class="main">
 			<h1><?php echo $home['header'] ?></h1> <br />
 			<?php echo $home['content'] ?>
-			<?php foreach ($homeweapon as $home_weapon): ?>
+			<?php foreach ($home_weapons as $home_weapon): ?>
 				<div class="img">
    			 		<img src="<?php echo $home_weapon['image_path']?>" class="img">
 					<a target="_blank" href="<?php echo $home_weapon['image_path']?>">
