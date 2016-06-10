@@ -148,8 +148,8 @@ require_once '../header.php';
                 'content' => $_POST['home_content']
             ]);
 
-        if(isset($_POST['weapon_descriptions'])
-            && isset($_FILES['weapon_pictures'])) {
+        if(!empty($_POST['weapon_descriptions'])
+            && !empty($_FILES['weapon_pictures'])) {
 
             $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
             $weapon_tmp_pictures = $_FILES['weapon_pictures']['tmp_name'];
@@ -178,11 +178,14 @@ require_once '../header.php';
 
         }
 
-        if(isset($_POST['about_header'])
-            && isset($_POST['about_content'])) {
+        if(!empty($_POST['about_header'])) {
             update_content('About',
-                ['header' => $_POST['about_header'],
-                 'content' => $_POST['about_content']]);
+                ['header' => $_POST['about_header']]);
+        }
+
+        if(!empty($_POST['about_content'])) {
+            update_content('About',
+                ['content' => $_POST['about_content']]);
         }
 
         if(isset($_POST['contact_header'])
