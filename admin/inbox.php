@@ -45,7 +45,7 @@ if (!empty($_GET['page'])) {
 } elseif(!empty($_GET['id'])) {
     update_table_by_id('Inbox',
         $_GET['id'],
-        ['is_read' => 1]);
+        ['is_read' => TRUE]);
     var_dump(read_table_by_id('Inbox', $_GET['id']));
 }
 require_once '../footer.php';
