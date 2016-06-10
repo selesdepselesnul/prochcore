@@ -143,8 +143,12 @@ require_once '../header.php';
                 'header' => $_POST['home_header']
             ]);
 
-        if(isset($_POST['home_content'])
-            && isset($_POST['weapon_descriptions'])
+        if(!empty($_POST['home_content']))
+            update_content('Home', [
+                'content' => $_POST['home_content']
+            ]);
+
+        if(isset($_POST['weapon_descriptions'])
             && isset($_FILES['weapon_pictures'])) {
 
             $weapon_pictures_error = $_FILES['weapon_pictures']['error'];
