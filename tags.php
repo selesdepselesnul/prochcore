@@ -89,13 +89,19 @@ function delete_content($content, $col, $val) {
 
 function redirectIfNotLogin() {
     session_start();
+
     if(!isset($_SESSION['login'])) {
         require_once '../config.php';
         $base_url = $config['base_url'];
-        echo "
-            <script>
-                window.location.href = '$base_url';
-            </script>
-        ";
+        redirectTo($base_url);
     }
+
+}
+
+function redirectTo($new_url) {
+    echo "
+        <script>
+            window.location.href = '$new_url';
+        </script>
+    ";
 }

@@ -136,9 +136,12 @@ require_once '../header.php';
                 unlink($full_path_weapon_fs);
             }
         }
+        if(!empty($_POST['home_header']))
+            update_content('Home', [
+                'header' => $_POST['home_header']
+            ]);
 
-        if(isset($_POST['home_header'])
-            && isset($_POST['home_content'])
+        if(isset($_POST['home_content'])
             && isset($_POST['weapon_descriptions'])
             && isset($_FILES['weapon_pictures'])) {
 
@@ -188,6 +191,8 @@ require_once '../header.php';
                  'social_media_header' => $_POST['contact_social_media_header'],
                  'form_header' => $_POST['contact_form_header']]);
         }
+
+        redirectTo($config['base_url'].'admin/content.php');
 
 
     }
