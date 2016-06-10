@@ -127,6 +127,14 @@ require_once '../header.php';
 </form>
 
 <?php
+
+    function updateIfNotEmpty($table_name, $post_name, $field_name) {
+        if(!empty($_POST[$post_name]))
+            update_content($table_name, [
+                $field_name => $_POST[$post_name]
+            ]);
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if(!empty($_POST['weapons_deleted'])) {
@@ -137,16 +145,6 @@ require_once '../header.php';
                 unlink($full_path_weapon_fs);
             }
         }
-
-        if(!empty($_POST['home_header']))
-            update_content('Home', [
-                'header' => $_POST['home_header']
-            ]);
-
-        if(!empty($_POST['home_content']))
-            update_content('Home', [
-                'content' => $_POST['home_content']
-            ]);
 
         if(!empty($_POST['weapon_descriptions'])
             && !empty($_FILES['weapon_pictures'])) {
@@ -175,34 +173,21 @@ require_once '../header.php';
                         'description' => $weapon_descriptions[$i]]);
                 }
             }
-
         }
 
-        if(!empty($_POST['about_header'])) {
-            update_content('About',
-                ['header' => $_POST['about_header']]);
-        }
+        updateIfNotEmpty('Home', 'home_header', 'header');
+        updateIfNotEmpty('Home', 'home_content', 'content');
 
-        if(!empty($_POST['about_content'])) {
-            update_content('About',
-                ['content' => $_POST['about_content']]);
-        }
+        updateIfNotEmpty('About', 'about_header', 'header');
+        updateIfNotEmpty('About', 'about_content', 'content');
 
-        if(isset($_POST['contact_header'])
-            && isset($_POST['contact_address_header'])
-            && isset($_POST['contact_address_content'])
-            && isset($_POST['contact_social_media_header'])
-            && isset($_POST['contact_form_header'])) {
-            update_content('Contact',
-                ['header' => $_POST['contact_header'],
-                 'address_header' => $_POST['contact_address_header'],
-                 'address_content' => $_POST['contact_address_content'],
-                 'social_media_header' => $_POST['contact_social_media_header'],
-                 'form_header' => $_POST['contact_form_header']]);
-        }
+        updateIfNotEmpty('Contact', 'contact_header', 'header');
+        updateIfNotEmpty('Contact', 'contact_address_header', 'address_header');
+        updateIfNotEmpty('Contact', 'contact_address_content', 'address_content');
+        updateIfNotEmpty('Contact', 'contact_social_media_header', 'social_media_header');
+        updateIfNotEmpty('Contact', 'contact_form_header', 'form_header');
 
         redirectTo($config['base_url'].'admin/content.php');
-
 
     }
 
