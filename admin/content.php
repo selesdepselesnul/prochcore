@@ -128,7 +128,8 @@ require_once '../header.php';
 
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if(isset($_POST['weapons_deleted'])) {
+
+        if(!empty($_POST['weapons_deleted'])) {
             foreach ($_POST['weapons_deleted'] as $weapon_path) {
                 $relative_weapon_fs = explode($config['base_url'], $weapon_path)[1];
                 $full_path_weapon_fs = $_SERVER['DOCUMENT_ROOT'].'/'.$config['project_root'].'/'.$relative_weapon_fs;
@@ -136,6 +137,7 @@ require_once '../header.php';
                 unlink($full_path_weapon_fs);
             }
         }
+
         if(!empty($_POST['home_header']))
             update_content('Home', [
                 'header' => $_POST['home_header']
