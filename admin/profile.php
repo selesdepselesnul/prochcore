@@ -1,26 +1,21 @@
 <?php
-require_once '../tags.php';
+require_once '../function.php';
 redirectIfNotLogin();
 require_once '../header.php';
 
-if(!empty($_POST['username'])
-	&& !empty($_POST['password'])
-	&& !empty($_POST['email'])
-	&& !empty($_POST['fullname']))
+function updateIfNotEmpty($table, $field_name, $post_name) {
+	if(!empty($_POST[$post_name]))
+		update_table_by_id($table, 1, [
+			$field_name => $_POST[$post_name]
+		]);
+}
 
-	mysqli_query(
-		$config['mysqli'],
-		"UPDATE Admin
-		SET
-		username='{$_POST['username']}',
-		password='{$_POST['password']}',
-		email='{$_POST['email']}',
-		fullname='{$_POST['fullname']}'
-		WHERE id=1;");
+updateIfNotEmpty('Admin', 'username', 'username');
+updateIfNotEmpty('Admin', 'password', 'password');
+updateIfNotEmpty('Admin', 'email', 'email');
+updateIfNotEmpty('Admin', 'fullname', 'fullname');
 
-$result = mysqli_query($config['mysqli'], 'SELECT * FROM Admin;');
-$admin = mysqli_fetch_assoc($result);
-mysqli_close($config['mysqli']);
+$admin = read_table_by_id('Admin', 1);
 ?>
 <form method="POST">
 	<label for="username">Username</label>
@@ -38,5 +33,5 @@ mysqli_close($config['mysqli']);
 	<input type="submit">
 </form>
 <?php
-require_once $config['base_url'].'footer.php';
+require_once '../footer.php';
 ?>

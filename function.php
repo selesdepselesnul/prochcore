@@ -10,15 +10,23 @@ function _do_connection($mysql_action) {
     return $result;
 }
 
-function read_dbase($content) {
-    return read_dbase_by_id($content, 1);
-}
-
-function read_dbase_by_id($table, $id) {
+function read_table_by_id($table, $id) {
     return _do_connection(function($connection) use($table, $id) {
         $q = mysqli_query($connection, "SELECT * FROM $table WHERE id = $id;");
         $result = mysqli_fetch_assoc($q);
         return $result;
+    });
+}
+
+function exec_query($query) {
+    return _do_connection(function ($connection) use($query) {
+        $rows = [];
+        if ($result = mysqli_query($connection, $query)) {
+            while ($row = mysqli_fetch_assoc($result))
+                $rows[] = $row;
+            mysqli_free_result($result);
+        }
+        return $rows;
     });
 }
 
@@ -35,10 +43,10 @@ function read_all_assoc_limit($table, $limit, $count) {
     });
 }
 
-function _read_all_assoc($content) {
-    return _do_connection(function($connection) use($content) {
+function read_table($table) {
+    return _do_connection(function($connection) use($table) {
         $rows = [];
-        if ($result = mysqli_query($connection, "SELECT * FROM $content;")) {
+        if ($result = mysqli_query($connection, "SELECT * FROM $table;")) {
             while ($row = mysqli_fetch_assoc($result))
                 $rows[] = $row;
             mysqli_free_result($result);
@@ -47,25 +55,20 @@ function _read_all_assoc($content) {
     });
 }
 
-$content['home'] = read_dbase('Home');
-$content['about'] = read_dbase('About');
-$content['contact'] = read_dbase('Contact');
-$content['homeweapon'] = _read_all_assoc('HomeWeapon');
-
-function update_content($content, $fields) {
-    _do_connection(function($connection) use($content, $fields){
-        $query="UPDATE $content SET ";
+function update_table_by_id($table, $id, $fields) {
+    _do_connection(function($connection) use($table, $id, $fields){
+        $query="UPDATE $table SET ";
         foreach ($fields as $key => $value)
             $query .= $key .'="'.$value.'",';
         $query = rtrim($query, ',');
-        $query .= '  WHERE id = 1;';
+        $query .= "  WHERE id = $id;";
         mysqli_query($connection, $query);
     });
 }
 
-function write_content($content, $fields) {
-    _do_connection(function($connection) use($content, $fields){
-        $query="INSERT INTO $content ";
+function write_table($table, $fields) {
+    _do_connection(function($connection) use($table, $fields){
+        $query="INSERT INTO $table ";
         $keys = "(";
         $values = "(";
         foreach ($fields as $key => $value) {
@@ -75,12 +78,11 @@ function write_content($content, $fields) {
         $keys_query = $query . rtrim($keys, ',') . ' ) ';
         $values_query = 'VALUES' . rtrim($values, ',') . ' );';
 
-        echo $keys_query . $values_query;
         mysqli_query($connection, $keys_query . $values_query);
     });
 }
 
-function delete_content($content, $col, $val) {
+function delete_table($content, $col, $val) {
     _do_connection(function($connection) use($content, $col, $val) {
         $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);

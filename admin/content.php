@@ -1,7 +1,12 @@
 <?php
-require_once '../tags.php';
+require_once '../function.php';
 redirectIfNotLogin();
 require_once '../header.php';
+
+$home = read_table_by_id('Home', 1);
+$about = read_table_by_id('About', 1);
+$contact = read_table_by_id('Contact', 1);
+$home_weapons = read_table('HomeWeapon');
 ?>
 
 <script type="text/javascript">
@@ -82,11 +87,11 @@ require_once '../header.php';
 <form method="post" name="contact" enctype="multipart/form-data" id="configForm">
     <h2>Home</h2>
     <label for="home_header">Header</label>
-    <input type="text" name="home_header" value="<?php echo $content['home']['header']?>"> <br />
+    <input type="text" name="home_header" value="<?php echo $home['header']?>"> <br />
     <label for="home_content">Content</label>
-    <textarea name="home_content" rows="8" cols="40"><?php echo $content['home']['content']?></textarea> <br />
+    <textarea name="home_content" rows="8" cols="40"><?php echo $home['content']?></textarea> <br />
     <div id="weapons">
-        <?php foreach ($content['homeweapon'] as $i => $home_weapon): ?>
+        <?php foreach ($home_weapons as $i => $home_weapon): ?>
             <div id="weapon_group_<?php echo $i+1 ?>">
                 <div class="img">
                     <img id="weaponPreview<?php echo $i+1 ?>"
@@ -108,21 +113,21 @@ require_once '../header.php';
     <hr />
     <h2>About</h2>
     <label for="about_header">Header</label>
-    <input type="text" name="about_header" value="<?php echo $content['about']['header']?>"> <br />
+    <input type="text" name="about_header" value="<?php echo $about['header']?>"> <br />
     <label for="about_content">Content</label>
-    <textarea name="about_content" rows="8" cols="40"><?php echo $content['about']['content']?></textarea><br />
+    <textarea name="about_content" rows="8" cols="40"><?php echo $about['content']?></textarea><br />
     <hr />
     <h2>Contact</h2>
     <label for="header">header</label>
-    <input type="text" name="contact_header" value="<?php echo $content['contact']['header']?>"> <br />
+    <input type="text" name="contact_header" value="<?php echo $contact['header']?>"> <br />
     <label for="contact_address_header">Address-Header</label>
-    <input type="text" name="contact_address_header" value="<?php echo $content['contact']['address_header']?>"> <br />
+    <input type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>"> <br />
     <label for="contact_address_content">Address-Content</label>
-    <textarea name="contact_address_content" rows="8" cols="40"><?php echo $content['contact']['address_content']?></textarea> <br />
+    <textarea name="contact_address_content" rows="8" cols="40"><?php echo $contact['address_content']?></textarea> <br />
     <label for="contact_social_media_header">Social Media-Header</label>
-    <input type="text" name="contact_social_media_header" value="<?php echo $content['contact']['social_media_header']?>"> <br />
+    <input type="text" name="contact_social_media_header" value="<?php echo $contact['social_media_header']?>"> <br />
     <label for="contact_form_header">Form-Header</label>
-    <input type="text" name="contact_form_header" value="<?php echo $content['contact']['form_header']?>"> <br />
+    <input type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>"> <br />
     <input type="submit">
 </form>
 
@@ -130,7 +135,7 @@ require_once '../header.php';
 
     function updateIfNotEmpty($table_name, $post_name, $field_name) {
         if(!empty($_POST[$post_name]))
-            update_content($table_name, [
+            update_table($table_name, [
                 $field_name => $_POST[$post_name]
             ]);
     }
@@ -141,7 +146,7 @@ require_once '../header.php';
             foreach ($_POST['weapons_deleted'] as $weapon_path) {
                 $relative_weapon_fs = explode($config['base_url'], $weapon_path)[1];
                 $full_path_weapon_fs = $_SERVER['DOCUMENT_ROOT'].'/'.$config['project_root'].'/'.$relative_weapon_fs;
-                delete_content('HomeWeapon', 'image_path', $weapon_path);
+                delete_table('HomeWeapon', 'image_path', $weapon_path);
                 unlink($full_path_weapon_fs);
             }
         }
@@ -155,7 +160,7 @@ require_once '../header.php';
             $weapon_descriptions = $_POST['weapon_descriptions'];
             $full_path_img = [];
 
-            // delete_content('HomeWeapon');
+            // delete_table('HomeWeapon');
             foreach ($weapon_pictures_error as $i => $err) {
                 if($err == UPLOAD_ERR_OK) {
                     $relative_pic = 'images/weapons/'.$weapon_names[$i];
@@ -168,7 +173,7 @@ require_once '../header.php';
                     );
 
                     $full_path_img[] = $config['base_url'].$relative_pic;
-                    write_content('HomeWeapon' , [
+                    write_table('HomeWeapon' , [
                         'image_path' => $config['base_url'].$relative_pic,
                         'description' => $weapon_descriptions[$i]]);
                 }

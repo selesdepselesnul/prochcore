@@ -1,16 +1,18 @@
 <?php
-require_once 'header.php';
-require_once 'tags.php';
+require_once '../header.php';
+require_once '../function.php';
 
-define('LIMIT', 5);
-if (isset($_GET['page'])) {
-    $inboxs = read_all_assoc_limit('Inbox',
-        ($_GET['page'] * LIMIT) - LIMIT, LIMIT);
+$no = 1;
+$limit = 5;
+if (!empty($_GET['page'])) {
+    $bound = $_GET['page'] * $limit - $limit;
+    $inboxs = exec_query(
+        "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
 ?>
     <table style="border:1;">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Waktu Masuk</th>
                 <th>Nama</th>
                 <th>Email</th>
@@ -21,7 +23,7 @@ if (isset($_GET['page'])) {
         <tbody>
             <?php foreach ($inboxs as $inbox): ?>
                 <tr>
-                    <td><?php echo $inbox['id']?></td>
+                    <td><?php echo $no++?></td>
                     <td><?php echo $inbox['message_time']?></td>
                     <td><?php echo $inbox['name'] ?></td>
                     <td><?php echo $inbox['email'] ?></td>
@@ -38,7 +40,7 @@ if (isset($_GET['page'])) {
         </tbody>
     </table>
 <?php
-} elseif(isset($_GET['id']))
-    var_dump(read_dbase_by_id('Inbox', $_GET['id']));
-require_once 'footer.php';
+} elseif(!empty($_GET['id']))
+    var_dump(read_table_by_id('Inbox', $_GET['id']));
+require_once '../footer.php';
 ?>

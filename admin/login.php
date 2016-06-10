@@ -1,9 +1,9 @@
 <?php
-require_once '../tags.php';
+require_once '../function.php';
 require_once '../config.php';
     if(isset($_POST['username'])
         && isset($_POST['password'])) {
-        $admin = read_dbase('Admin');
+        $admin = read_table_by_id('Admin', 1);
         if($_POST['username'] == $admin['username']
             && $_POST['password'] == $admin['password']) {
             session_start();
