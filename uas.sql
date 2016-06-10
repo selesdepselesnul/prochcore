@@ -8,7 +8,8 @@ CREATE TABLE Inbox (
 	message_time TIMESTAMP,
 	name TEXT,
 	email TEXT,
-	content TEXT
+	content TEXT,
+	is_read BOOLEAN DEFAULT false
 );
 
 INSERT INTO Inbox (name, email, content)

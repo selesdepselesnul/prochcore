@@ -17,6 +17,7 @@ if (!empty($_GET['page'])) {
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Content</th>
+                <th>Dibaca</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@ if (!empty($_GET['page'])) {
                     <td><?php echo $inbox['name'] ?></td>
                     <td><?php echo $inbox['email'] ?></td>
                     <td><?php echo $inbox['content'] ?></td>
+                    <td><?php echo $inbox['is_read'] ?></td>
                     <td>
                         <a
                         href="<?php
@@ -40,7 +42,11 @@ if (!empty($_GET['page'])) {
         </tbody>
     </table>
 <?php
-} elseif(!empty($_GET['id']))
+} elseif(!empty($_GET['id'])) {
+    update_table_by_id('Inbox',
+        $_GET['id'],
+        ['is_read' => 1]);
     var_dump(read_table_by_id('Inbox', $_GET['id']));
+}
 require_once '../footer.php';
 ?>
