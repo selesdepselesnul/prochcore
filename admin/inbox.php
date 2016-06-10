@@ -32,7 +32,7 @@ if (!empty($_GET['page'])) {
                         <a
                         href="<?php
                         echo $config['base_url']
-                        . 'inbox.php?id='.$inbox['id'] ?>"
+                        . 'admin/inbox.php?id='.$inbox['id'] ?>"
                         >lebih lanjut</a>
                     </td>
                 </tr>
