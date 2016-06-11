@@ -124,6 +124,10 @@ ul {
 	margin-top: 60px;
 }
 
+#configForm {
+	margin-bottom: 80px;
+}
+
 textarea {
 	height: 300px;
 }

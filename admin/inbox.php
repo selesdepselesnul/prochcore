@@ -4,6 +4,9 @@ require_once '../function.php';
 
 $no = 1;
 $limit = 5;
+function generate_span_status($class, $status) {
+    return "<span class='label $class'>$status</span>";
+}
 if (!empty($_GET['page'])) {
     $bound = $_GET['page'] * $limit - $limit;
     $inboxs = exec_query(
@@ -16,8 +19,7 @@ if (!empty($_GET['page'])) {
                     <th>Waktu Masuk</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Content</th>
-                    <th>Dibaca</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,14 +30,15 @@ if (!empty($_GET['page'])) {
                         <td><?php echo $inbox['message_time']?></td>
                         <td><?php echo $inbox['name'] ?></td>
                         <td><?php echo $inbox['email'] ?></td>
-                        <td><?php echo $inbox['content'] ?></td>
-                        <td><?php echo $inbox['is_read'] ?></td>
+                        <td><?php echo $inbox['is_read'] ?
+                            generate_span_status('label-default', "sudah dibaca")
+                            :generate_span_status('label-danger', "belum dibaca") ?></td>
                         <td>
-                            <a
+                            <a class="btn btn-default"
                             href="<?php
                             echo $config['base_url']
                             . 'admin/inbox.php?id='.$inbox['id'] ?>"
-                            >lebih lanjut</a>
+                            >Baca</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

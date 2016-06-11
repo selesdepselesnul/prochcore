@@ -128,7 +128,7 @@ $home_weapons = read_table('HomeWeapon');
     <input type="text" name="contact_social_media_header" value="<?php echo $contact['social_media_header']?>"> <br />
     <label for="contact_form_header">Form-Header</label>
     <input type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>"> <br />
-    <input type="submit">
+    <input type="submit" class="btn btn-default">
 </form>
 
 <?php
@@ -197,11 +197,9 @@ $home_weapons = read_table('HomeWeapon');
     }
 
 ?>
-</div> <!-- close container -->
 <script>
     const lastWeapon = document.getElementById('weapons').lastElementChild;
     if(lastWeapon)
         counter = lastWeapon.id.split('_').pop();
 </script>
-</body>
-</html>
+<?php require_once '../footer.php' ?>;
