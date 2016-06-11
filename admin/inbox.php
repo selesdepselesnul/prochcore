@@ -8,6 +8,8 @@ function generate_span_status($class, $status) {
     return "<span class='label $class'>$status</span>";
 }
 if (!empty($_GET['page'])) {
+    $lower = (int)$_GET['page'] / $limit;
+    echo $lower;
     $bound = $_GET['page'] * $limit - $limit;
     $inboxs = exec_query(
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
@@ -44,6 +46,25 @@ if (!empty($_GET['page'])) {
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <nav class="row">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
 <?php
 } elseif(!empty($_GET['id'])) {
     $inbox = read_table_by_id('Inbox', $_GET['id']);

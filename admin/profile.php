@@ -1,7 +1,7 @@
 <?php
 require_once '../function.php';
 redirectIfNotLogin();
-require_once '../header.php';
+require_once 'header-admin.php';
 
 function updateIfNotEmpty($table, $field_name, $post_name) {
 	if(!empty($_POST[$post_name]))
