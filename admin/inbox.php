@@ -2,14 +2,19 @@
 require_once 'header-admin.php';
 require_once '../function.php';
 
-$no = 1;
 $limit = 5;
 function generate_span_status($class, $status) {
     return "<span class='label $class'>$status</span>";
 }
 if (!empty($_GET['page'])) {
-    $lower = (int)$_GET['page'] / $limit;
-    echo $lower;
+    $lower = $_GET['page'] / $limit;
+    if(is_float($lower))
+        $lower = intval($lower) + 1;
+    echo "lower = $lower <br />";
+    $upper = $lower * 5;
+    $no = $upper - $limit;
+    echo "upper = $upper <br />";
+    echo $lower / 5;
     $bound = $_GET['page'] * $limit - $limit;
     $inboxs = exec_query(
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
@@ -28,7 +33,7 @@ if (!empty($_GET['page'])) {
             <tbody>
                 <?php foreach ($inboxs as $inbox): ?>
                     <tr>
-                        <td><?php echo $no++?></td>
+                        <td><?php echo ++$no?></td>
                         <td><?php echo $inbox['message_time']?></td>
                         <td><?php echo $inbox['name'] ?></td>
                         <td><?php echo $inbox['email'] ?></td>
@@ -53,12 +58,13 @@ if (!empty($_GET['page'])) {
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
+            <?php for ($i=$lower; $i <= $upper ; $i++): ?>
+                <li>
+                    <a href="<?php echo $config['base_url']?>admin/inbox.php?page=<?php echo $i?>">
+                        <?php echo $i;?>
+                    </a>
+                </li>
+            <?php endfor;?>
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
