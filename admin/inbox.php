@@ -7,14 +7,12 @@ function generate_span_status($class, $status) {
     return "<span class='label $class'>$status</span>";
 }
 if (!empty($_GET['page'])) {
+    $counter = ($_GET['page'] * 5) - 5;
     $lower = $_GET['page'] / $limit;
     if(is_float($lower))
         $lower = intval($lower) + 1;
-    echo "lower = $lower <br />";
     $upper = $lower * 5;
     $no = $upper - $limit;
-    echo "upper = $upper <br />";
-    echo $lower / 5;
     $bound = $_GET['page'] * $limit - $limit;
     $inboxs = exec_query(
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
@@ -33,7 +31,7 @@ if (!empty($_GET['page'])) {
             <tbody>
                 <?php foreach ($inboxs as $inbox): ?>
                     <tr>
-                        <td><?php echo ++$no?></td>
+                        <td><?php echo ++$counter?></td>
                         <td><?php echo $inbox['message_time']?></td>
                         <td><?php echo $inbox['name'] ?></td>
                         <td><?php echo $inbox['email'] ?></td>
