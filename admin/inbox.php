@@ -43,10 +43,17 @@ if (!empty($_GET['page'])) {
         </table>
 <?php
 } elseif(!empty($_GET['id'])) {
+    $inbox = read_table_by_id('Inbox', $_GET['id']);
     update_table_by_id('Inbox',
         $_GET['id'],
         ['is_read' => TRUE]);
-    var_dump(read_table_by_id('Inbox', $_GET['id']));
+?>
+    <div class="row">
+        <h4><?php echo 'Nama pengirim : ' . $inbox['name']?></h4>
+        <h4><?php echo 'Email pengirim : ' . $inbox['email']?></h4>
+        <?php echo '<hr /><h4>Content :</h4><br />'.$inbox['content'] ?>
+    </div>
+<?php
 } else {
     redirectTo($config['base_url']);
 }
