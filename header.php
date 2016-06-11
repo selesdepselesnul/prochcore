@@ -6,6 +6,8 @@
 	<title>INDONISTAN NUKE INC</title>
 	<link rel="stylesheet"
 	href="<?php echo $config['base_url'].'index.css' ?>">
+	<link rel="stylesheet"
+	href="<?php echo $config['base_url'].'bootstrap.min.css' ?>">
 </head>
 <body>
 <div class="header">

@@ -16,7 +16,7 @@
 			'content' => $_POST['content']
 		]);
 ?>
-	<div class="home" id="home" class="main">
+	<div class="home row" id="home" class="main">
 			<h1><?php echo $home['header'] ?></h1> <br />
 			<?php echo $home['content'] ?>
 			<?php foreach ($home_weapons as $home_weapon): ?>
@@ -29,12 +29,12 @@
 			<?php endforeach; ?>
 	</div>
 
-	<div id="about" class="main">
+	<div id="about" class="main row">
 		<h1><?php echo $about['header'] ?></h1>
 		<?php echo $about['content'] ?>
 	</div>
 
-	<div id="contact" class="main">
+	<div id="contact" class="main row">
 		<h1><?php echo $contact['header'] ?></h1>
 		<br/>
 		<br/>

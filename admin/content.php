@@ -84,7 +84,7 @@ $home_weapons = read_table('HomeWeapon');
     }
 
 </script>
-<form method="post" name="contact" enctype="multipart/form-data" id="configForm">
+<form class="row" method="post" name="contact" enctype="multipart/form-data" id="configForm">
     <h2>Home</h2>
     <label for="home_header">Header</label>
     <input type="text" name="home_header" value="<?php echo $home['header']?>"> <br />
