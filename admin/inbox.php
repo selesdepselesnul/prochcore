@@ -47,6 +47,8 @@ if (!empty($_GET['page'])) {
         $_GET['id'],
         ['is_read' => TRUE]);
     var_dump(read_table_by_id('Inbox', $_GET['id']));
+} else {
+    redirectTo($config['base_url']);
 }
 require_once '../footer.php';
 ?>
