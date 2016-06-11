@@ -1,7 +1,7 @@
 <?php
 require_once '../function.php';
 redirectIfNotLogin();
-require_once '../header.php';
+require_once 'header-admin.php';
 
 $home = read_table_by_id('Home', 1);
 $about = read_table_by_id('About', 1);

@@ -1,5 +1,5 @@
 <?php
-require_once '../header.php';
+require_once 'header-admin.php';
 require_once '../function.php';
 
 $no = 1;
