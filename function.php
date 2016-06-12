@@ -94,8 +94,7 @@ function redirectIfNotLogin() {
     if(!isset($_SESSION['login'])) {
         if(!isset($config))
             require_once 'config.php';
-        $base_url = $config['base_url'];
-        redirectTo($base_url);
+        redirectTo($config['base_url'] . 'admin/login.php');
     }
 }
 

@@ -11,8 +11,10 @@
 </head>
 <body>
 <div class="header">
-	<img src="<?php echo $config['base_url'].'images/logo.png'?>"
+	<a href="<?php echo $config['base_url'] ?>">
+		<img src="<?php echo $config['base_url'].'images/logo.png'?>"
 	 	 id="indonistanLogo"/>
+	</a>
 	<h2 id="indonistanName">Indonistan Nuke Inc</h2>
 	<ul>
 		<li class="menu-list" style="display: inline-block;">

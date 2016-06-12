@@ -26,6 +26,10 @@
 		<a
 		href="<?php echo $config['base_url'].'#contact'?>"
 		id="contactMenu" class="menu">Contact</a></li>
+		<li class="menu-list">
+		<a
+		href="<?php echo $config['base_url'].'admin/content.php'?>"
+		id="contactMenu" class="menu">R U Admin ? </a></li>
 	</ul>
 </div>
 <div class="container">
