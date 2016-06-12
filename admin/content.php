@@ -122,15 +122,23 @@ $home_weapons = read_table('HomeWeapon');
               <button type="button" onclick="addingWeapon()">+</button>
           </div>
         </div>
+
         <div class="panel panel-default">
           <div class="panel-heading">About</div>
           <div class="panel-body">
-              <label for="about_header">Header</label>
-              <input type="text" name="about_header" value="<?php echo $about['header']?>"> <br />
-              <label for="about_content">Content</label>
-              <textarea name="about_content" rows="8" cols="40"><?php echo $about['content']?></textarea><br />
+              <div class="form-group">
+                  <label class="control-label" for="about_header">Header</label>
+                  <input class="form-control" type="text" name="about_header" value="<?php echo $about['header']?>">
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label" for="about_content">Content</label>
+                  <textarea class="form-control" name="about_content" rows="8"
+                    cols="40"><?php echo $about['content'];?></textarea>
+              </div>
           </div>
         </div>
+
         <div class="panel panel-default">
           <div class="panel-heading">Contact</div>
           <div class="panel-body">
