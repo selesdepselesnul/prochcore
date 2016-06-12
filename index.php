@@ -39,17 +39,12 @@
 	</div>
 
 	<div id="contact" class="main row">
-		<h1><?php echo $contact['header'] ?></h1>
-		<br/>
-		<br/>
+		<h1 class="row"><?php echo $contact['header'] ?></h1>
+
 		<address>
 			<h2><?php echo $contact['address_header'] ?></h2><br/>
 			<?php echo $contact['address_content'] ?>
 		</address>
-		<div id="socialMedia">
-			<h2><?php echo $contact['social_media_header'] ?></h2> <br />
-			<?php echo $contact['social_media_content'] ?>
-		</div>
 
 		<form method="POST" action="" id="contactForm">
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
@@ -62,7 +57,7 @@
 			<input type="submit" class="button"><br/>
 		</form>
 	</div>
-	<br/>
+
 
 <script src="index.js">
 </script>

@@ -163,8 +163,6 @@ CREATE TABLE Contact (
 	header TEXT,
 	address_header TEXT,
 	address_content TEXT,
-	social_media_header TEXT,
-	social_media_content LONGTEXT,
 	form_header TEXT
 );
 
@@ -178,18 +176,5 @@ VALUES (
 	Sehat Bahagia Street No. 100
 	Jelekong, Baleendah, Bandung 40375 West Java
 	Indonesia',
-	'Or contact us on social media and e-mail at',
-	'<img src="images/vk.png" class="social-media" title="VKontakte">
-	   <a href="https://vk.com/indonistanofficial">
-	   https://vk.com/indonistanofficial</a> <br/>
-	   <img src="images/ok.svg" class="social-media" title="Odnoklassniki">
-	   <a href="https://ok.ru/indonistanofficial">
-	   https://ok.ru/indonistanofficial</a> <br/>
-	   <img src="images/rutube.png" class="social-media" title="rutube">
-	   <a href="https://rutube.ru/indonistanofficial">
-	   https://rutube.ru/indonistanofficial</a> <br/>
-	   <img src="images/mail.svg" class="social-media" title="mail.ru">
-	   <a href="mailto:indonistanofficial@mail.ru?Subject=Nuke"
-	   target="_top">indonistanofficial@mail.ru</a> <br/>',
 	'Or contact us from this site, by filling this form'
 );

@@ -58,6 +58,13 @@ $home_weapons = read_table('HomeWeapon');
 
         divImg.appendChild(weaponPreviewImg);
 
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'remove';
+        removeButton.onclick = function() {
+            removingWeapon(this);
+        };
+        removeButton.className = 'btn btn-danger';
+        removeButton.type = 'button';
 
         // weapon input file
         const weaponInputFile = document.createElement('input');
@@ -71,11 +78,11 @@ $home_weapons = read_table('HomeWeapon');
         weaponDescTextArea.name = 'weapon_descriptions[]';
         weaponDescTextArea.rows = 8;
         weaponDescTextArea.cols = 40;
+        weaponDescTextArea.className = 'form-control';
 
         div.appendChild(divImg);
-        div.appendChild(document.createElement('br'));
+        div.appendChild(removeButton);
         div.appendChild(weaponInputFile);
-        div.appendChild(document.createElement('br'));
         div.appendChild(weaponDescTextArea);
         div.appendChild(document.createElement('br'));
 
@@ -105,22 +112,26 @@ $home_weapons = read_table('HomeWeapon');
               <div id="weapons">
                   <?php foreach ($home_weapons as $i => $home_weapon): ?>
                       <div id="weapon_group_<?php echo $i+1 ?>">
+
+
                           <div class="img">
                               <img id="weaponPreview<?php echo $i+1 ?>"
                                   src="<?php echo $home_weapon['image_path']?>">
                           </div>
-
                           <button class="btn btn-danger" type="button" onclick="removingWeapon(this)"
-                              id="<?php echo $home_weapon['image_path'] ?>">-</button>
+                              id="<?php echo $home_weapon['image_path'] ?>">remove</button>
+
                           <input type="file" name="weapon_pictures[]"
                                  id="weapon_picture_<?php echo $i+1 ?>"
-                                 onchange="readURL(this)"> <br />
+                                 onchange="readURL(this)">
+
                           <textarea class="form-control" name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
-                          </textarea><br />
+                          </textarea>
+                          <br />
                       </div>
                   <?php endforeach; ?>
               </div>
-              <button class="btn btn-primary" type="button" onclick="addingWeapon()">+</button>
+              <button class="btn btn-primary" type="button" onclick="addingWeapon()">add new weapon</button>
           </div>
         </div>
 
@@ -148,18 +159,13 @@ $home_weapons = read_table('HomeWeapon');
                  <input class="form-control" type="text" name="contact_header" value="<?php echo $contact['header']?>">
              </div>
             <div class="form-group">
-                <label class="control-label" for="header">header</label>
-                <input class="form-control" type="text" name="contact_header" value="<?php echo $contact['header']?>">
+                <label class="control-label" for="header">Address-header</label>
+                <input class="form-control" type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>">
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="contact_address_content">Address-Content</label>
                 <textarea class="form-control" name="contact_address_content" rows="8" cols="40"><?php echo $contact['address_content']?></textarea>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label" for="contact_social_media_header">Social Media-Header</label>
-                <input class="form-control" type="text" name="contact_social_media_header" value="<?php echo $contact['social_media_header']?>">
             </div>
 
             <div class="form-group">

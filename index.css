@@ -40,6 +40,10 @@ address, #socialMedia, #contactForm {
 	margin-left: 200px;
 }
 
+address {
+	font-style: italic;
+}
+
 .footer > a {
 	color: #766e6e;
 }
