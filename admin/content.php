@@ -86,50 +86,64 @@ $home_weapons = read_table('HomeWeapon');
 </script>
 <div class="row upper-row ">
     <form method="post" name="contact" enctype="multipart/form-data" id="configForm">
-        <h2>Home</h2>
-        <label for="home_header">Header</label>
-        <input type="text" name="home_header" value="<?php echo $home['header']?>"> <br />
-        <label for="home_content">Content</label>
-        <textarea name="home_content" rows="8" cols="40"><?php echo $home['content']?></textarea> <br />
-        <div id="weapons">
-            <?php foreach ($home_weapons as $i => $home_weapon): ?>
-                <div id="weapon_group_<?php echo $i+1 ?>">
-                    <div class="img">
-                        <img id="weaponPreview<?php echo $i+1 ?>"
-                            src="<?php echo $home_weapon['image_path']?>" class="img">
-                    </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Home</div>
+          <div class="panel-body">
+              <label for="home_header">Header</label>
+              <input type="text" name="home_header" value="<?php echo $home['header']?>"> <br />
+              <label for="home_content">Content</label>
+              <textarea name="home_content" rows="8" cols="40"><?php echo $home['content']?></textarea> <br />
+              <div id="weapons">
+                  <?php foreach ($home_weapons as $i => $home_weapon): ?>
+                      <div id="weapon_group_<?php echo $i+1 ?>">
+                          <div class="img">
+                              <img id="weaponPreview<?php echo $i+1 ?>"
+                                  src="<?php echo $home_weapon['image_path']?>" class="img">
+                          </div>
 
-                    <button type="button" onclick="removingWeapon(this)"
-                        id="<?php echo $home_weapon['image_path'] ?>">-</button>
-                    <input type="file" name="weapon_pictures[]"
-                           id="weapon_picture_<?php echo $i+1 ?>"
-                           onchange="readURL(this)"> <br />
-                    <textarea name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
-                    </textarea><br />
-                </div>
-            <?php endforeach; ?>
+                          <button type="button" onclick="removingWeapon(this)"
+                              id="<?php echo $home_weapon['image_path'] ?>">-</button>
+                          <input type="file" name="weapon_pictures[]"
+                                 id="weapon_picture_<?php echo $i+1 ?>"
+                                 onchange="readURL(this)"> <br />
+                          <textarea name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
+                          </textarea><br />
+                      </div>
+                  <?php endforeach; ?>
+              </div>
+              <button type="button" onclick="addingWeapon()">+</button>
+          </div>
         </div>
-        <button type="button" onclick="addingWeapon()">+</button>
+        <div class="panel panel-default">
+          <div class="panel-heading">About</div>
+          <div class="panel-body">
+              <label for="about_header">Header</label>
+              <input type="text" name="about_header" value="<?php echo $about['header']?>"> <br />
+              <label for="about_content">Content</label>
+              <textarea name="about_content" rows="8" cols="40"><?php echo $about['content']?></textarea><br />
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Contact</div>
+          <div class="panel-body">
+              <label for="about_header">Header</label>
+              <input type="text" name="about_header" value="<?php echo $about['header']?>"> <br />
+              <label for="about_content">Content</label>
+              <textarea name="about_content" rows="8" cols="40"><?php echo $about['content']?></textarea><br />
+              <label for="header">header</label>
+              <input type="text" name="contact_header" value="<?php echo $contact['header']?>"> <br />
+              <label for="contact_address_header">Address-Header</label>
+              <input type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>"> <br />
+              <label for="contact_address_content">Address-Content</label>
+              <textarea name="contact_address_content" rows="8" cols="40"><?php echo $contact['address_content']?></textarea> <br />
+              <label for="contact_social_media_header">Social Media-Header</label>
+              <input type="text" name="contact_social_media_header" value="<?php echo $contact['social_media_header']?>"> <br />
+              <label for="contact_form_header">Form-Header</label>
+              <input type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>"> <br />
 
-        <hr />
-        <h2>About</h2>
-        <label for="about_header">Header</label>
-        <input type="text" name="about_header" value="<?php echo $about['header']?>"> <br />
-        <label for="about_content">Content</label>
-        <textarea name="about_content" rows="8" cols="40"><?php echo $about['content']?></textarea><br />
-        <hr />
-        <h2>Contact</h2>
-        <label for="header">header</label>
-        <input type="text" name="contact_header" value="<?php echo $contact['header']?>"> <br />
-        <label for="contact_address_header">Address-Header</label>
-        <input type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>"> <br />
-        <label for="contact_address_content">Address-Content</label>
-        <textarea name="contact_address_content" rows="8" cols="40"><?php echo $contact['address_content']?></textarea> <br />
-        <label for="contact_social_media_header">Social Media-Header</label>
-        <input type="text" name="contact_social_media_header" value="<?php echo $contact['social_media_header']?>"> <br />
-        <label for="contact_form_header">Form-Header</label>
-        <input type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>"> <br />
-        <input type="submit" class="btn btn-default">
+          </div>
+        </div>
+        <input type="submit" class="btn btn-default" value="save">
     </form>
 </div>
 
