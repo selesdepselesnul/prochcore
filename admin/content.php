@@ -89,10 +89,18 @@ $home_weapons = read_table('HomeWeapon');
         <div class="panel panel-default">
           <div class="panel-heading">Home</div>
           <div class="panel-body">
-              <label for="home_header">Header</label>
-              <input type="text" name="home_header" value="<?php echo $home['header']?>"> <br />
-              <label for="home_content">Content</label>
-              <textarea name="home_content" rows="8" cols="40"><?php echo $home['content']?></textarea> <br />
+
+              <div class="form-group">
+                  <label class="control-label" for="home_header">Header</label>
+                  <input class="form-control" type="text" name="home_header" value="<?php echo $home['header']?>">
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label" for="home_content">Content</label>
+                  <textarea class="form-control" name="home_content" rows="8" cols="40"><?php echo $home['content']?></textarea>
+              </div>
+
+               <br />
               <div id="weapons">
                   <?php foreach ($home_weapons as $i => $home_weapon): ?>
                       <div id="weapon_group_<?php echo $i+1 ?>">
