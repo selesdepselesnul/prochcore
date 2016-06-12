@@ -11,6 +11,12 @@ function generate_span_status($class, $status) {
 if (!empty($_GET['page'])) {
     $counter = ($_GET['page'] * 5) - 5;
     $lower_page = $_GET['page'];
+    $page_count = count_row('Inbox') / 5;
+
+    if(is_float($page_count))
+        $page_count = intval($page_count) + 1;
+    else
+        $page_count = intval($page_count);
 
     if(is_float($lower_page))
         $lower_page = intval($lower_page) + 1;
@@ -18,6 +24,7 @@ if (!empty($_GET['page'])) {
     $upper_page = $lower_page + 4;
     $no = $upper_page - $limit;
     $bound = $_GET['page'] * $limit - $limit;
+
     $inboxs = exec_query(
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
 
@@ -63,17 +70,21 @@ if (!empty($_GET['page'])) {
                   </a>
                 </li>
             <?php endif ?>
-            <?php for ($i=$lower_page; $i <= $upper_page ; $i++): ?>
+            <?php for ($i=$lower_page; $i <= $upper_page; $i++): ?>
                 <li>
                     <a href="<?php echo $config['base_url']?>admin/inbox.php?page=<?php echo $i?>">
                         <?php echo $i;?>
                     </a>
                 </li>
+                <?php if($i ==  $page_count) break;?>
             <?php endfor;?>
-              <a href="<?php echo $config['base_url'].'admin/inbox.php?page='.($upper_page + 1) ?>" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
+            <?php if($upper_page < $page_count): ?>
+                <li>
+                  <a href="<?php echo $config['base_url'].'admin/inbox.php?page='.($upper_page + 1) ?>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            <?php endif ?>
           </ul>
         </nav>
 <?php

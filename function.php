@@ -106,3 +106,7 @@ function redirectTo($new_url) {
         </script>
     ";
 }
+
+function count_row($table) {
+    return intval(exec_query("SELECT COUNT(*) AS count FROM $table")[0]['count']);
+}
