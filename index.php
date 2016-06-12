@@ -16,17 +16,21 @@
 			'content' => $_POST['content']
 		]);
 ?>
-	<div class="home row" id="home" class="main">
-			<h1><?php echo $home['header'] ?></h1> <br />
-			<?php echo $home['content'] ?>
-			<?php foreach ($home_weapons as $home_weapon): ?>
-				<div class="img">
-   			 		<img src="<?php echo $home_weapon['image_path']?>" class="img">
-					<a target="_blank" href="<?php echo $home_weapon['image_path']?>">
-   			 		</a>
-   			 		<div class="desc"><?php echo $home_weapon['description']?></div>
-   			 	</div>
-			<?php endforeach; ?>
+	<div class="home row  upper-row" id="home" class="main">
+			<h1 class="row"><?php echo $home['header'] ?></h1> <br />
+			<div class="row">
+				<?php echo $home['content'] ?>
+			</div>
+			<div class="row">
+				<?php foreach ($home_weapons as $home_weapon): ?>
+					<div class="img">
+	   			 		<img src="<?php echo $home_weapon['image_path']?>" class="img">
+						<a target="_blank" href="<?php echo $home_weapon['image_path']?>">
+	   			 		</a>
+	   			 		<div class="desc"><?php echo $home_weapon['description']?></div>
+	   			 	</div>
+				<?php endforeach ?>
+			</div>
 	</div>
 
 	<div id="about" class="main row">

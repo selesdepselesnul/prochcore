@@ -14,6 +14,7 @@ if(isset($_POST['username'])
     }
 }
 ?>
+    <div class="upper-row row">
         <form class="form-horizontal" method="post">
             <div class="form-group">
                 <label for="username" class="control-label">Username</label>
@@ -27,4 +28,6 @@ if(isset($_POST['username'])
                 <input type="submit" name="login" class="btn btn-default">
             </div>
         </form>
+    </div>
+
 <?php require_once '../footer.php' ?>

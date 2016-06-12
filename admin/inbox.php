@@ -27,7 +27,8 @@ if (!empty($_GET['page'])) {
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
 
 ?>
-        <table class="row table">
+    <div class="row upper-row">
+        <table class="table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -59,7 +60,9 @@ if (!empty($_GET['page'])) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <nav class="row">
+    </div>
+
+        <div class="row">
           <ul class="pagination">
             <?php if($lower_page != 1): ?>
                 <li>
@@ -84,7 +87,7 @@ if (!empty($_GET['page'])) {
                 </li>
             <?php endif ?>
           </ul>
-        </nav>
+        </div>
 <?php
 } elseif(!empty($_GET['id'])) {
     $inbox = read_table_by_id('Inbox', $_GET['id']);

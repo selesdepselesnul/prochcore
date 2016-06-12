@@ -17,7 +17,7 @@ updateIfNotEmpty('Admin', 'fullname', 'fullname');
 
 $admin = read_table_by_id('Admin', 1);
 ?>
-<div class="row">
+<div class="row upper-row">
 	<form method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="control-label" for="username">Username</label>
