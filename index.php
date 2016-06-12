@@ -9,18 +9,20 @@
 
 	if(!empty($_POST['name'])
 		&& !empty($_POST['email'])
+		&& !empty($_POST['subject'])
 		&& !empty($_POST['content']))
 		write_table('Inbox', [
 			'name' => $_POST['name'],
 			'email' => $_POST['email'],
+			'subject' => $_POST['subject'],
 			'content' => $_POST['content']
 		]);
 ?>
 	<div class="home row  upper-row" id="home" class="main">
-			<h1 class="row"><?php echo $home['header'] ?></h1> <br />
-			<div class="row">
+			<h1><?php echo $home['header'] ?></h1>
+			<p>
 				<?php echo $home['content'] ?>
-			</div>
+			</p>
 			<div class="row">
 				<?php foreach ($home_weapons as $home_weapon): ?>
 					<div class="img">
@@ -35,7 +37,9 @@
 
 	<div id="about" class="main row">
 		<h1><?php echo $about['header'] ?></h1>
-		<?php echo $about['content'] ?>
+		<p>
+			<?php echo $about['content'] ?>
+		</p>
 	</div>
 
 	<div id="contact" class="main row">
@@ -52,6 +56,8 @@
 			<input type="text" name="name" class="input" /> <br/>
 			<label for="email">E-Mail</label><br/>
 			<input type="email" name="email" class="input" /> <br/>
+			<label for="subject">Subject</label><br/>
+			<input type="text" name="subject" class="input" /> <br/>
 			<label for="content">Content</label> <br/>
 			<textarea name="content" class="input"></textarea><br/>
 			<input type="submit" class="button"><br/>

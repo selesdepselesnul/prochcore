@@ -35,6 +35,7 @@ if (!empty($_GET['page'])) {
                     <th>Waktu Masuk</th>
                     <th>Nama</th>
                     <th>Email</th>
+                    <th>Subjek</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
@@ -46,6 +47,7 @@ if (!empty($_GET['page'])) {
                         <td><?php echo $inbox['message_time']?></td>
                         <td><?php echo $inbox['name'] ?></td>
                         <td><?php echo $inbox['email'] ?></td>
+                        <td><?php echo $inbox['subject'] ?></td>
                         <td><?php echo $inbox['is_read'] ?
                             generate_span_status('label-default', "sudah dibaca")
                             :generate_span_status('label-danger', "belum dibaca") ?></td>
@@ -95,10 +97,15 @@ if (!empty($_GET['page'])) {
         $_GET['id'],
         ['is_read' => TRUE]);
 ?>
-    <div class="row">
-        <h4><?php echo 'Nama pengirim : ' . $inbox['name']?></h4>
-        <h4><?php echo 'Email pengirim : ' . $inbox['email']?></h4>
-        <?php echo '<hr /><h4>Content :</h4><br />'.$inbox['content'] ?>
+    <div class="row upper-row">
+        <h1><?php echo $inbox['subject']?></h1>
+        <hr />
+        <p>
+            <?php echo $inbox['content'] ?>
+        </p>
+        <hr />
+        <h4><?php echo 'dari  : ' . $inbox['name']?></h4>
+        <h4><?php echo 'email : ' . $inbox['email']?></h4>
     </div>
 <?php
 } else {
