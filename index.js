@@ -89,6 +89,7 @@ function changeWhenScrolling(elem, adjElem, menu) {
 
 	if (window.scrollY == 0) {
 		indonistanLogo.style.display = 'block'
+		indonistanName.style.display = 'block'
 		// indonistanName.style.marginTop = '10px'
 		for (var i = 0; i < menus.length; i++) {
 			menuList[i].style.display = 'block'
@@ -96,7 +97,7 @@ function changeWhenScrolling(elem, adjElem, menu) {
 		}
 	} else {
 		indonistanLogo.style.display = 'none';
-		indonistanName.style.marginLeft = '10px'
+		indonistanName.style.display = 'none';
 		for (var i = 0; i < menus.length; i++) {
 			menuList[i].style.display = 'inline-block'
 			menus[i].style.fontSize = '30px'
