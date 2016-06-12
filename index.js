@@ -2,7 +2,7 @@
 
 const homeMenu = document.getElementById('homeMenu')
 const aboutMenu = document.getElementById('aboutMenu')
-const contactMenu = document.getElementById('contactMenu')		
+const contactMenu = document.getElementById('contactMenu')
 const menus = document.getElementsByClassName('menu')
 const about = document.getElementById('about')
 const contact = document.getElementById('contact')
@@ -15,27 +15,27 @@ function activateContent(contentMenu) {
 	contentMenu.style.visibility = ''
 }
 
-(() => {
+(function (){
 	about.style.visibility = 'hidden'
     contact.style.visibility = 'hidden'
 	activateContent(homeMenu)
 
-	for (var i = 0; i < menus.length; i++) 
+	for (var i = 0; i < menus.length; i++)
 		menus[i].onclick = (e) => {
 
 			const menuId = e.srcElement.id
-			
+
 			onDeactive(homeMenu)
 			onDeactive(aboutMenu)
 			onDeactive(contactMenu)
-			
-			if (menuId == "homeMenu") 
+
+			if (menuId == "homeMenu")
 				onActive(homeMenu, home, generateInActiveMenuList(homeMenu))
-			else if(menuId == "aboutMenu") 
+			else if(menuId == "aboutMenu")
 				onActive(aboutMenu, about, generateInActiveMenuList(aboutMenu))
-			else 
+			else
 				onActive(contactMenu, contact, generateInActiveMenuList(contactMenu))
-				 
+
 		}
 
 })()
@@ -96,7 +96,7 @@ function changeWhenScrolling(elem, adjElem, menu) {
 		}
 	} else {
 		indonistanLogo.style.display = 'none';
-		indonistanName.style.marginLeft = '10px'	
+		indonistanName.style.marginLeft = '10px'
 		for (var i = 0; i < menus.length; i++) {
 			menuList[i].style.display = 'inline-block'
 			menus[i].style.fontSize = '30px'
@@ -104,20 +104,20 @@ function changeWhenScrolling(elem, adjElem, menu) {
 	}
 
 	if(adjElem) {
-		if(window.scrollY >= elem.offsetTop 
-			&& window.scrollY <= adjElem.offsetTop) 
+		if(window.scrollY >= elem.offsetTop
+			&& window.scrollY <= adjElem.offsetTop)
 			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu))
 		else
-			onDeactive(menu)			
+			onDeactive(menu)
 	} else {
-		if(window.scrollY >= elem.offsetTop) 
+		if(window.scrollY >= elem.offsetTop)
 			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu))
 		else
 			onDeactive(menu)
 	}
 }
 
-window.addEventListener('scroll', 
+window.addEventListener('scroll',
 	() => {
 
 		changeWhenScrolling(home, about, homeMenu)
