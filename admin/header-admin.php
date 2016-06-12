@@ -18,20 +18,20 @@
 	</a>
 	<h2 id="indonistanName">Indonistan Nuke Inc</h2>
 	<?php if(is_login()) : ?>
-		<ul>
-			<li class="menu-list" style="display: inline-block;">
+		<ul class="nav nav-pills">
+			<li>
 			<a
 			href="<?php echo $config['base_url'].'admin/content.php'?>"
 			id="aboutMenu" class="menu">Content</a></li>
-			<li class="menu-list" style="display: inline-block;">
+			<li>
 			<a
 			href="<?php echo $config['base_url'].'admin/profile.php'?>"
 			id="contactMenu" class="menu">Profile</a></li>
-	        <li class="menu-list" style="display: inline-block;">
+	        <li>
 	        <a
 	        href="<?php echo $config['base_url'].'admin/inbox.php?page=1'?>"
 	        id="contactMenu" class="menu">Inbox</a></li>
-	        <li class="menu-list" style="display: inline-block;">
+	        <li>
 	        <a
 	        href="<?php echo $config['base_url'].'admin/logout.php'?>"
 	        id="contactMenu" class="menu">Logout</a></li>
