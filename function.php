@@ -98,6 +98,10 @@ function redirectIfNotLogin() {
     }
 }
 
+function is_login() {
+    return isset($_SESSION['login']);
+}
+
 function redirectTo($new_url) {
     echo "
         <script>
