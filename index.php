@@ -50,7 +50,7 @@
 			<?php echo $contact['address_content'] ?>
 		</address>
 
-		<form method="POST" action="" id="contactForm">
+		<form class="lower-container" method="POST" action="" id="contactForm">
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
 			<label for="name">Name</label><br/>
 			<input type="text" name="name" class="input" /> <br/>

@@ -30,11 +30,9 @@ div.desc {
     text-align: center;
 }
 
-address, #contactForm {
+.lower-container {
 	margin-bottom: 100px;
-	/*margin-left: 200px;*/
 }
-
 
 .footer > a {
 	color: #766e6e;

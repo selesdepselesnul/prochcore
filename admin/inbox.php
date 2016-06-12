@@ -64,7 +64,7 @@ if (!empty($_GET['page'])) {
         </table>
     </div>
 
-        <div class="row">
+        <div class="row lower-container">
           <ul class="pagination">
             <?php if($lower_page != 1): ?>
                 <li>
