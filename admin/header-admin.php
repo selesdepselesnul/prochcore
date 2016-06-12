@@ -1,4 +1,5 @@
 <?php require_once '../config.php'; ?>
+<?php require_once '../function.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
 	 	 id="indonistanLogo"/>
 	</a>
 	<h2 id="indonistanName">Indonistan Nuke Inc</h2>
-	<?php if(is_login()) :?>
+	<?php if(is_login()) : ?>
 		<ul>
 			<li class="menu-list" style="display: inline-block;">
 			<a

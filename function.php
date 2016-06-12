@@ -1,4 +1,5 @@
 <?php
+session_start();
 function _do_connection($mysql_action) {
     $mysqli = mysqli_connect(
                 "127.0.0.1",
@@ -90,7 +91,6 @@ function delete_table($content, $col, $val) {
 }
 
 function redirectIfNotLogin() {
-    session_start();
     if(!isset($_SESSION['login'])) {
         if(!isset($config))
             require_once 'config.php';
@@ -99,7 +99,7 @@ function redirectIfNotLogin() {
 }
 
 function is_login() {
-    return isset($_SESSION['login']);
+    return !empty($_SESSION['login']);
 }
 
 function redirectTo($new_url) {

@@ -1,7 +1,5 @@
 <?php
 require_once 'header-admin.php';
-require_once '../function.php';
-
 $limit = 5;
 
 function generate_span_status($class, $status) {
