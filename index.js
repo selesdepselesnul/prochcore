@@ -89,7 +89,7 @@ function changeWhenScrolling(elem, adjElem, menu) {
 
 	if (window.scrollY == 0) {
 		indonistanLogo.style.display = 'block'
-		indonistanName.style.marginTop = '10px'
+		// indonistanName.style.marginTop = '10px'
 		for (var i = 0; i < menus.length; i++) {
 			menuList[i].style.display = 'block'
 			menus[i].style.fontSize = '20px'
