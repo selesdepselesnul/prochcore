@@ -18,20 +18,30 @@ updateIfNotEmpty('Admin', 'fullname', 'fullname');
 $admin = read_table_by_id('Admin', 1);
 ?>
 <div class="row">
-	<form method="POST">
-		<label for="username">Username</label>
-		<input type="text" name="username"
-			   value="<?php echo $admin['username']?>" /> <br />
-		<label for="password">Password</label>
-		<input type="password" name="password"
-				value="<?php echo $admin['password']?>" /> <br />
-		<label for="email">Email</label>
-		<input type="email" name="email"
-				value="<?php echo $admin['email']?>" /> <br />
-		<label for="fullname">Fullname</label>
-		<input type="text" name="fullname"
-				value="<?php echo $admin['fullname']?>"/> <br />
-		<input type="submit">
+	<form method="POST" class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label" for="username">Username</label>
+			<input class="form-control" type="text" name="username"
+				   value="<?php echo $admin['username']?>" />
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input class="form-control" type="password" name="password"
+					value="<?php echo $admin['password']?>" />
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input class="form-control" type="email" name="email"
+					value="<?php echo $admin['email']?>" />
+		</div>
+		<div class="form-group">
+			<label for="fullname">Fullname</label>
+			<input class="form-control" type="text" name="fullname"
+					value="<?php echo $admin['fullname']?>"/>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-default">
+		</div>
 	</form>
 </div>
 
