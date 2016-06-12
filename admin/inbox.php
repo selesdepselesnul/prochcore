@@ -3,19 +3,24 @@ require_once 'header-admin.php';
 require_once '../function.php';
 
 $limit = 5;
+
 function generate_span_status($class, $status) {
     return "<span class='label $class'>$status</span>";
 }
+
 if (!empty($_GET['page'])) {
     $counter = ($_GET['page'] * 5) - 5;
-    $lower = $_GET['page'] / $limit;
-    if(is_float($lower))
-        $lower = intval($lower) + 1;
-    $upper = $lower * 5;
-    $no = $upper - $limit;
+    $lower_page = $_GET['page'];
+
+    if(is_float($lower_page))
+        $lower_page = intval($lower_page) + 1;
+
+    $upper_page = $lower_page + 4;
+    $no = $upper_page - $limit;
     $bound = $_GET['page'] * $limit - $limit;
     $inboxs = exec_query(
         "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
+
 ?>
         <table class="row table">
             <thead>
@@ -51,19 +56,21 @@ if (!empty($_GET['page'])) {
         </table>
         <nav class="row">
           <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <?php for ($i=$lower; $i <= $upper ; $i++): ?>
+            <?php if($lower_page != 1): ?>
+                <li>
+                  <a href="<?php echo $config['base_url'] . 'admin/inbox.php?page='.($lower_page-1)?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+            <?php endif ?>
+            <?php for ($i=$lower_page; $i <= $upper_page ; $i++): ?>
                 <li>
                     <a href="<?php echo $config['base_url']?>admin/inbox.php?page=<?php echo $i?>">
                         <?php echo $i;?>
                     </a>
                 </li>
             <?php endfor;?>
-              <a href="#" aria-label="Next">
+              <a href="<?php echo $config['base_url'].'admin/inbox.php?page='.($upper_page + 1) ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
