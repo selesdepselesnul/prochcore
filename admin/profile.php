@@ -60,7 +60,7 @@ $admin = read_table_by_id('Admin', 1);
 					value="<?php echo $admin['fullname']?>"/>
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-default" name="submit">
+			<input type="submit" class="btn btn-default" name="submit" value="save">
 		</div>
 	</form>
 </div>

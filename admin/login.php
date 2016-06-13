@@ -25,7 +25,7 @@ if(isset($_POST['username'])
                 <input class="form-control" type="password" name="password">
             </div>
             <div class="form-group">
-                <input type="submit" name="login" class="btn btn-default">
+                <input type="submit" name="login" class="btn btn-default" value="login">
             </div>
         </form>
     </div>
