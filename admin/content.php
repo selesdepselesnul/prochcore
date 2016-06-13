@@ -181,14 +181,6 @@ $home_weapons = read_table('HomeWeapon');
 
 
 <?php
-
-    function updateIfNotEmpty($table_name, $post_name, $field_name) {
-        if(!empty($_POST[$post_name]))
-            update_table_by_id($table_name, 1, [
-                $field_name => $_POST[$post_name]
-            ]);
-    }
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if(!empty($_POST['weapons_deleted'])) {

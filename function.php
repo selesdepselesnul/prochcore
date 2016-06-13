@@ -33,19 +33,6 @@ function exec_query($query) {
     });
 }
 
-function read_all_assoc_limit($table, $limit, $count) {
-    return _do_connection(function ($connection) use($table, $limit, $count) {
-        $rows = [];
-        if ($result = mysqli_query($connection,
-            "SELECT * FROM $table LIMIT $limit, $count;")) {
-            while ($row = mysqli_fetch_assoc($result))
-                $rows[] = $row;
-            mysqli_free_result($result);
-        }
-        return $rows;
-    });
-}
-
 function read_table($table) {
     return _do_connection(function($connection) use($table) {
         $rows = [];
@@ -119,4 +106,11 @@ function count_row($table) {
 function generate_active_class($page)  {
 	 $current_page = basename($_SERVER['SCRIPT_NAME']);
 	 echo $current_page == $page . '.php' ? 'class="active"' : '';
+}
+
+function updateIfNotEmpty($table_name, $post_name, $field_name) {
+	if(!empty($_POST[$post_name]))
+		update_table_by_id($table_name, 1, [
+			$field_name => $_POST[$post_name]
+		]);
 }

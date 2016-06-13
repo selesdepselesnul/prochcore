@@ -7,9 +7,9 @@ function generate_span_status($class, $status) {
 }
 
 if (!empty($_GET['page'])) {
-    $counter = ($_GET['page'] * 5) - 5;
+    $counter = ($_GET['page'] * $limit) - $limit;
     $lower_page = $_GET['page'];
-    $page_count = count_row('Inbox') / 5;
+    $page_count = count_row('Inbox') / $limit;
 
     if(is_float($page_count))
         $page_count = intval($page_count) + 1;
