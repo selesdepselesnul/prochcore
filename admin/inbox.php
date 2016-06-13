@@ -1,5 +1,6 @@
 <?php
 require_once 'header-admin.php';
+redirectIfNotLogin();
 $limit = 5;
 
 function generate_span_status($class, $status) {
@@ -49,7 +50,7 @@ if (!empty($_GET['page'])) {
                         <td><?php echo $inbox['email'] ?></td>
                         <td><?php echo $inbox['subject'] ?></td>
                         <td><?php echo $inbox['is_read'] ?
-                            generate_span_status('label-default', "sudah dibaca")
+                            generate_span_status('label-success', "sudah dibaca")
                             :generate_span_status('label-danger', "belum dibaca") ?></td>
                         <td>
                             <a class="btn btn-default"

@@ -10,7 +10,7 @@ if(isset($_POST['username'])
         && $_POST['password'] == $admin['password']) {
         session_start();
         $_SESSION['login'] = 1;
-        header('Location: '.$config['base_url'].'admin/content.php');
+        header('Location: '.$config['base_url'].'admin/homeadmin.php');
     }
 }
 ?>

@@ -83,7 +83,7 @@ function redirectIfNotLogin() {
     if(!isset($_SESSION['login'])) {
         if(!isset($config))
             require_once 'config.php';
-        redirectTo($config['base_url'] . 'admin/login.php');
+        redirectTo('login.php');
     }
 }
 
@@ -102,6 +102,13 @@ function redirectTo($new_url) {
 function count_row($table) {
     return intval(exec_query("SELECT COUNT(*) AS count FROM $table")[0]['count']);
 }
+
+function count_row_where($table, $field, $value) {
+    return intval(
+        exec_query("SELECT COUNT(*) AS count FROM $table WHERE $field = $value;")
+        [0]['count']);
+}
+
 
 function generate_active_class($page)  {
 	 $current_page = basename($_SERVER['SCRIPT_NAME']);

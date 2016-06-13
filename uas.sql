@@ -75,7 +75,7 @@ VALUES (
 	'indonesiaraya',
 	'root@example.com',
 	'Example',
-	'mindblowing.gif');
+	'psych-great.jpg');
 
 DROP TABLE IF EXISTS Home;
 CREATE TABLE Home (

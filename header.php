@@ -30,7 +30,7 @@
 		id="contactMenu" class="menu">Contact</a></li>
 		<li class="menu-list">
 		<a
-		href="<?php echo $config['base_url'].'admin/content.php'?>"
+		href="<?php echo $config['base_url'].'admin/homeadmin.php'?>"
 		id="contactMenu" class="menu">R U Admin ? </a></li>
 	</ul>
 </div>

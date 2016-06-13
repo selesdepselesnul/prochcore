@@ -19,8 +19,13 @@ require_once '../function.php';
 	 	 id="indonistanLogo"/>
 	</a>
 	<h2 id="indonistanName">Indonistan Nuke Inc</h2>
-	<?php if(is_login()) :?>
+	<?php if(is_login()) : ?>
 		<ul class="nav nav-pills">
+			<li  <?php generate_active_class('homeadmin')?>>
+				<a
+				href="<?php echo $config['base_url'].'admin/homeadmin.php'?>"
+				id="aboutMenu" class="menu">Home</a>
+			</li>
 			<li  <?php generate_active_class('content')?>>
 				<a
 				href="<?php echo $config['base_url'].'admin/content.php'?>"
