@@ -131,7 +131,7 @@ $home_weapons = read_table('HomeWeapon');
                       </div>
                   <?php endforeach; ?>
               </div>
-              <button class="btn btn-primary" type="button" onclick="addingWeapon()">add new weapon</button>
+              <button class="btn btn-primary" type="button" onclick="addingWeapon()">+</button>
           </div>
         </div>
 
