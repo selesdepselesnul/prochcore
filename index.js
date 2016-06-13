@@ -1,5 +1,3 @@
-// author : Moch Deden R S
-
 const homeMenu = document.getElementById('homeMenu');
 const aboutMenu = document.getElementById('aboutMenu');
 const contactMenu = document.getElementById('contactMenu');
@@ -119,9 +117,9 @@ function changeWhenScrolling(elem, adjElem, menu) {
 }
 
 window.addEventListener('scroll',
-	(function() {
+	function() {
 
 		changeWhenScrolling(home, about, homeMenu);
 		changeWhenScrolling(about, contact, aboutMenu);
 		changeWhenScrolling(contact, null, contactMenu);
-})
+});

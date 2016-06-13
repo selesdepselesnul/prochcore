@@ -1,4 +1,3 @@
--- author : Moch Deden
 CREATE DATABASE IF NOT EXISTS uas;
 USE uas;
 
@@ -13,50 +12,8 @@ CREATE TABLE Inbox (
 	is_read BOOLEAN DEFAULT false
 );
 
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
-
-INSERT INTO Inbox (name, email, content)
-VALUES ('fsafsa', 'fasfsa@gmail.com', 'safasfasf');
+INSERT INTO Inbox (name, email, subject, content)
+VALUES ('suparno', 'suparno@cucok.com', 'mantab', 'mantab is the best');
 
 DROP TABLE IF EXISTS Admin;
 CREATE TABLE Admin (
@@ -114,14 +71,15 @@ INSERT INTO About
 VALUES (
 	1,
 	'Who we are ?',
-	'We are Nuclear weapon company from Indonesia,
-	 we are disribute nuclear and its vehicle all of them are made in Russia,
-	 but lately we also build our own nuclear and its vehicle.
-	 Quality is our priority, we are experienced company,
-	 we do our bussiness since soviet union era.
-	 We work with passion and love, we believe peace is better
-	 but peace can be reached with war, so deal with it
-	 are you ready for NUKE ?<b>URA URA URA !!!</b>'
+	'We are Nuclear weapon company from Indonesia,<br/>
+	 we are disribute nuclear and its vehicle all of them are made in Russia,<br/>
+	 but lately we also build our own nuclear and its vehicle.<br/>
+	 Quality is our priority, we are experienced company,<br/>
+	 we do our bussiness since soviet union era.<br/>
+	 We work with passion and love, we believe peace is better<br/>
+	 but peace can be reached with war, so deal with it<br/>
+	 are you ready for NUKE ?<br/>
+	 <b>URA URA URA !!!</b>'
 );
 
 
@@ -140,9 +98,9 @@ VALUES (
 	1,
 	'How To Contact Us ?',
 	'You can directly visit our office at',
-	'Indonistan Nuke Inc
-	Sehat Bahagia Street No. 100
-	Jelekong, Baleendah, Bandung 40375 West Java
+	'Indonistan Nuke Inc<br/>
+	Sehat Bahagia Street No. 100<br/>
+	Jelekong, Baleendah, Bandung 40375 West Java<br/>
 	Indonesia',
 	'Or contact us from this site, by filling this form'
 );

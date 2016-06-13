@@ -15,6 +15,4 @@ $admin = read_table_by_id('Admin', 1);
         <p>Jumlah seluruh inbox yang sudah dibaca : <span class="label label-success"><?php echo count_row_where('Inbox', 'is_read', 1) ?></span></p>
     </div>
 </div>
-
-
 <?php require_once '../footer.php'; ?>

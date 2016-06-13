@@ -1,5 +1,4 @@
 <?php
-	// author : Moch Deden
 	require_once 'header.php';
 	require_once 'function.php';
 
@@ -69,6 +68,4 @@
 <script src="index.js">
 </script>
 
-<?php
-require_once 'footer.php';
-?>
+<?php require_once 'footer.php'; ?>

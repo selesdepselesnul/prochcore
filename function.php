@@ -1,5 +1,4 @@
 <?php
-// author : Moch Deden
 session_start();
 function process_db($mysql_action) {
     require_once 'config.php';
