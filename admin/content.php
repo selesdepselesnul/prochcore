@@ -204,19 +204,21 @@ $home_weapons = read_table('HomeWeapon');
             // delete_table('HomeWeapon');
             foreach ($weapon_pictures_error as $i => $err) {
                 if($err == UPLOAD_ERR_OK) {
-                    $relative_pic = 'images/weapons/'.$weapon_names[$i];
-                    $pic = $_SERVER['DOCUMENT_ROOT']
-                        .'/'.$config['project_root'].'/'
-                        .$relative_pic;
-                    move_uploaded_file(
-                        $weapon_tmp_pictures[$i],
-                        $pic
-                    );
+                    if(is_valid_std_img($weapon_tmp_pictures[$i])) {
+                        $relative_pic = 'images/weapons/'.$weapon_names[$i];
+                        $pic = $_SERVER['DOCUMENT_ROOT']
+                            .'/'.$config['project_root'].'/'
+                            .$relative_pic;
+                        move_uploaded_file(
+                            $weapon_tmp_pictures[$i],
+                            $pic
+                        );
 
-                    $full_path_img[] = $config['base_url'].$relative_pic;
-                    write_table('HomeWeapon' , [
-                        'image_path' => $config['base_url'].$relative_pic,
-                        'description' => $weapon_descriptions[$i]]);
+                        $full_path_img[] = $config['base_url'].$relative_pic;
+                        write_table('HomeWeapon' , [
+                            'image_path' => $config['base_url'].$relative_pic,
+                            'description' => $weapon_descriptions[$i]]);
+                    }
                 }
             }
         }
