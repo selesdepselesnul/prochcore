@@ -124,6 +124,7 @@ $home_weapons = read_table('HomeWeapon');
                           <input type="file" name="weapon_pictures[]"
                                  id="weapon_picture_<?php echo $i+1 ?>"
                                  onchange="readURL(this)">
+                         <span class="label label-info" role="alert">jpg / png / gif</span>
 
                           <textarea class="form-control" name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
                           </textarea>
@@ -201,7 +202,6 @@ $home_weapons = read_table('HomeWeapon');
             $weapon_descriptions = $_POST['weapon_descriptions'];
             $full_path_img = [];
 
-            // delete_table('HomeWeapon');
             foreach ($weapon_pictures_error as $i => $err) {
                 if($err == UPLOAD_ERR_OK) {
                     if(is_valid_std_img($weapon_tmp_pictures[$i])) {

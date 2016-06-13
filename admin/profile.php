@@ -38,6 +38,7 @@ $admin = read_table_by_id('Admin', 1);
 		<div class="form-group">
 			<label class="control-label" for="avatar">Pilih avatar</label>
 			<input type="file" name="avatar"/>
+ 			<span class="label label-info" role="alert">jpg / png / gif</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="username">Username</label>
