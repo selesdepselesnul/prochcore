@@ -1,11 +1,13 @@
 <?php
 session_start();
 function _do_connection($mysql_action) {
+    require_once 'config.php';
+    global $config;
     $mysqli = mysqli_connect(
-                "127.0.0.1",
-                "root",
-                "indonesiaraya",
-                "uas");
+                $config['DB']['hostname'],
+                $config['DB']['username'],
+                $config['DB']['password'],
+                $config['DB']['database']);
     $result = $mysql_action($mysqli);
     mysqli_close($mysqli);
     return $result;
@@ -112,4 +114,9 @@ function redirectTo($new_url) {
 
 function count_row($table) {
     return intval(exec_query("SELECT COUNT(*) AS count FROM $table")[0]['count']);
+}
+
+function generate_active_class($page)  {
+	 $current_page = basename($_SERVER['SCRIPT_NAME']);
+	 echo $current_page == $page . '.php' ? 'class="active"' : '';
 }

@@ -1,11 +1,6 @@
 <?php
 require_once '../config.php';
 require_once '../function.php';
-
-function generate_active_class($page)  {
-	 $current_page = basename($_SERVER['SCRIPT_NAME']);
-	 echo $current_page == $page . '.php' ? 'class="active"' : '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
