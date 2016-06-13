@@ -1,5 +1,5 @@
+-- author : Moch Deden
 CREATE DATABASE IF NOT EXISTS uas;
-
 USE uas;
 
 DROP TABLE IF EXISTS Inbox;

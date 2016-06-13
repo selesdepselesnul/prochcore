@@ -1,40 +1,40 @@
 // author : Moch Deden R S
 
-const homeMenu = document.getElementById('homeMenu')
-const aboutMenu = document.getElementById('aboutMenu')
-const contactMenu = document.getElementById('contactMenu')
-const menus = document.getElementsByClassName('menu')
-const about = document.getElementById('about')
-const contact = document.getElementById('contact')
-const home = document.getElementById('home')
+const homeMenu = document.getElementById('homeMenu');
+const aboutMenu = document.getElementById('aboutMenu');
+const contactMenu = document.getElementById('contactMenu');
+const menus = document.getElementsByClassName('menu');
+const about = document.getElementById('about');
+const contact = document.getElementById('contact');
+const home = document.getElementById('home');
 
 
 function activateContent(contentMenu) {
-	contentMenu.style.backgroundColor = 'grey'
-	contentMenu.style.borderRadius = '4px'
-	contentMenu.style.visibility = ''
+	contentMenu.style.backgroundColor = 'grey';
+	contentMenu.style.borderRadius = '4px';
+	contentMenu.style.visibility = '';
 }
 
 (function (){
-	about.style.visibility = 'hidden'
-    contact.style.visibility = 'hidden'
-	activateContent(homeMenu)
+	about.style.visibility = 'hidden';
+    contact.style.visibility = 'hidden';
+	activateContent(homeMenu);
 
 	for (var i = 0; i < menus.length; i++)
 		menus[i].onclick = (e) => {
 
-			const menuId = e.srcElement.id
+			const menuId = e.srcElement.id;
 
-			onDeactive(homeMenu)
-			onDeactive(aboutMenu)
-			onDeactive(contactMenu)
+			onDeactive(homeMenu);
+			onDeactive(aboutMenu);
+			onDeactive(contactMenu);
 
 			if (menuId == "homeMenu")
-				onActive(homeMenu, home, generateInActiveMenuList(homeMenu))
+				onActive(homeMenu, home, generateInActiveMenuList(homeMenu));
 			else if(menuId == "aboutMenu")
-				onActive(aboutMenu, about, generateInActiveMenuList(aboutMenu))
+				onActive(aboutMenu, about, generateInActiveMenuList(aboutMenu));
 			else
-				onActive(contactMenu, contact, generateInActiveMenuList(contactMenu))
+				onActive(contactMenu, contact, generateInActiveMenuList(contactMenu));
 
 		}
 
@@ -42,86 +42,86 @@ function activateContent(contentMenu) {
 
 
 function onActive(elem, active, inActiveList) {
-	elem.style.backgroundColor = 'grey'
-	elem.style.borderRadius = '4px'
+	elem.style.backgroundColor = 'grey';
+	elem.style.borderRadius = '4px';
 
-	active.style.visibility = ''
+	active.style.visibility = '';
 
 	for (var i = 0; i < inActiveList.length; i++) {
-		inActiveList[i].style.visibility = 'hidden'
+		inActiveList[i].style.visibility = 'hidden';
 	};
 }
 
 function onDeactive(elem) {
-	elem.style.backgroundColor = ''
-	elem.style.borderRadius = ''
+	elem.style.backgroundColor = '';
+	elem.style.borderRadius = '';
 }
 
 function generateInActiveMenuList(menu) {
 	switch(menu.id) {
 		case 'homeMenu':
-			return [about, contact]
+			return [about, contact];
 		case 'aboutMenu':
-			return [home, contact]
+			return [home, contact];
 		default:
-			return [home, about]
+			return [home, about];
 	}
 }
 
 function generateActiveMenu(menu) {
 	switch(menu.id) {
 		case 'homeMenu':
-			return home
+			return home;
 		case 'aboutMenu':
-			return about
+			return about;
 		default:
-			return contact
+			return contact;
 	}
 }
 
 
 
 function changeWhenScrolling(elem, adjElem, menu) {
-	const indonistanLogo = document.getElementById('indonistanLogo')
-	const menuList = document.getElementsByClassName('menu-list')
-	const indonistanName = document.getElementById('indonistanName')
+	const indonistanLogo = document.getElementById('indonistanLogo');
+	const menuList = document.getElementsByClassName('menu-list');
+	const indonistanName = document.getElementById('indonistanName');
 
 
 	if (window.scrollY == 0) {
-		indonistanLogo.style.display = 'block'
-		indonistanName.style.display = 'block'
-		// indonistanName.style.marginTop = '10px'
+		indonistanLogo.style.display = 'block';
+		indonistanName.style.display = 'block';
+
 		for (var i = 0; i < menus.length; i++) {
-			menuList[i].style.display = 'block'
-			menus[i].style.fontSize = '20px'
+			menuList[i].style.display = 'block';
+			menus[i].style.fontSize = '20px';
 		}
 	} else {
 		indonistanLogo.style.display = 'none';
 		indonistanName.style.display = 'none';
 		for (var i = 0; i < menus.length; i++) {
-			menuList[i].style.display = 'inline-block'
-			menus[i].style.fontSize = '30px'
+			menuList[i].style.display = 'inline-block';
+			menus[i].style.fontSize = '30px';
 		}
 	}
 
 	if(adjElem) {
 		if(window.scrollY >= elem.offsetTop
 			&& window.scrollY <= adjElem.offsetTop)
-			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu))
+			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu));
 		else
 			onDeactive(menu)
 	} else {
 		if(window.scrollY >= elem.offsetTop)
-			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu))
+			onActive(menu, generateActiveMenu(menu), generateInActiveMenuList(menu));
 		else
-			onDeactive(menu)
+			onDeactive(menu);
 	}
 }
 
 window.addEventListener('scroll',
-	() => {
+	(function() {
 
-		changeWhenScrolling(home, about, homeMenu)
-		changeWhenScrolling(about, contact, aboutMenu)
-		changeWhenScrolling(contact, null, contactMenu)
+		changeWhenScrolling(home, about, homeMenu);
+		changeWhenScrolling(about, contact, aboutMenu);
+		changeWhenScrolling(contact, null, contactMenu);
 })
