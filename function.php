@@ -1,6 +1,6 @@
 <?php
 session_start();
-function _do_connection($mysql_action) {
+function process_db($mysql_action) {
     require_once 'config.php';
     global $config;
     $mysqli = mysqli_connect(
@@ -14,7 +14,7 @@ function _do_connection($mysql_action) {
 }
 
 function read_table_by_id($table, $id) {
-    return _do_connection(function($connection) use($table, $id) {
+    return process_db(function($connection) use($table, $id) {
         $q = mysqli_query($connection, "SELECT * FROM $table WHERE id = $id;");
         $result = mysqli_fetch_assoc($q);
         return $result;
@@ -22,7 +22,7 @@ function read_table_by_id($table, $id) {
 }
 
 function exec_query($query) {
-    return _do_connection(function ($connection) use($query) {
+    return process_db(function ($connection) use($query) {
         $rows = [];
         if ($result = mysqli_query($connection, $query)) {
             while ($row = mysqli_fetch_assoc($result))
@@ -34,7 +34,7 @@ function exec_query($query) {
 }
 
 function read_table($table) {
-    return _do_connection(function($connection) use($table) {
+    return process_db(function($connection) use($table) {
         $rows = [];
         if ($result = mysqli_query($connection, "SELECT * FROM $table;")) {
             while ($row = mysqli_fetch_assoc($result))
@@ -46,7 +46,7 @@ function read_table($table) {
 }
 
 function update_table_by_id($table, $id, $fields) {
-    _do_connection(function($connection) use($table, $id, $fields){
+    process_db(function($connection) use($table, $id, $fields){
         $query="UPDATE $table SET ";
         foreach ($fields as $key => $value)
             $query .= $key .'="'.$value.'",';
@@ -57,7 +57,7 @@ function update_table_by_id($table, $id, $fields) {
 }
 
 function write_table($table, $fields) {
-    _do_connection(function($connection) use($table, $fields){
+    process_db(function($connection) use($table, $fields){
         $query="INSERT INTO $table ";
         $keys = "(";
         $values = "(";
@@ -73,7 +73,7 @@ function write_table($table, $fields) {
 }
 
 function delete_table($content, $col, $val) {
-    _do_connection(function($connection) use($content, $col, $val) {
+    process_db(function($connection) use($content, $col, $val) {
         $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);
     });
@@ -113,4 +113,16 @@ function updateIfNotEmpty($table_name, $post_name, $field_name) {
 		update_table_by_id($table_name, 1, [
 			$field_name => $_POST[$post_name]
 		]);
+}
+
+function is_valid_std_img($file) {
+    $mime['jpg']='image/jpeg';
+    $mime['png']='image/png';
+    $mime['gif']='image/gif';
+
+    $actual_mime = mime_content_type($file);
+
+    return $actual_mime == $mime['jpg']
+        || $actual_mime == $mime['png']
+        || $actual_mime == $mime['gif'];
 }

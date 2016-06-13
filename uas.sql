@@ -64,7 +64,8 @@ CREATE TABLE Admin (
 	username TEXT,
 	password TEXT,
 	email TEXT,
-	fullname TEXT
+	fullname TEXT,
+	avatar TEXT
 );
 
 INSERT INTO Admin
@@ -72,8 +73,9 @@ VALUES (
 	1,
 	'root',
 	'indonesiaraya',
-	'mantab@gmail.com',
-	'Saturno Atmaji');
+	'root@example.com',
+	'Example',
+	'mindblowing.gif');
 
 DROP TABLE IF EXISTS Home;
 CREATE TABLE Home (
