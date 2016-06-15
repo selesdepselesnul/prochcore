@@ -69,7 +69,7 @@
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
 			<?php if(!empty($is_sending_success)): ?>
 				<?php if($is_sending_success == 'success'): ?>
-					<label class="label label-success">Sukses dikirim ke pihak <?php echo $contact['company_name'] ?></label>
+					<label class="label label-success">Terima kasih, pesan sukses dikirim ke pihak <?php echo $contact['company_name'] ?></label>
 				<?php else: ?>
 					<label class="label label-danger">Gagal dikirim, harap semua input dilengkapi !</label>
 				<?php endif ?>
