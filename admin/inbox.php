@@ -102,7 +102,7 @@ if (!empty($_GET['page'])) {
         <h1><?php echo $inbox['subject']?></h1>
         <hr />
         <p>
-            <?php echo $inbox['content'] ?>
+            <?php echo nl2br($inbox['content'])?>
         </p>
         <hr />
         <h4><?php echo 'dari  : ' . $inbox['name']?></h4>
