@@ -72,7 +72,7 @@ function add_row($table, $fields) {
     });
 }
 
-function delete_table($content, $col, $val) {
+function delete_row($content, $col, $val) {
     process_db(function($connection) use($content, $col, $val) {
         $query = 'DELETE FROM ' . $content . " WHERE $col = '$val';";
         mysqli_query($connection, $query);

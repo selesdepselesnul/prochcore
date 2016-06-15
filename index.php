@@ -39,7 +39,7 @@
 	   			 		<img src="<?php echo $home_weapon['image_path']?>" class="img">
 						<a target="_blank" href="<?php echo $home_weapon['image_path']?>">
 	   			 		</a>
-	   			 		<div class="desc"><?php echo $home_weapon['description']?></div>
+	   			 		<div class="desc"><?php echo nl2br($home_weapon['description']) ?></div>
 	   			 	</div>
 				<?php endforeach ?>
 			</div>
