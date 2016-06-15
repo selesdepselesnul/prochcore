@@ -2,6 +2,7 @@
 	require_once 'header.php';
 	require_once 'function.php';
 
+	$admin = read_table_by_id('Admin', 1);
 	$home = read_table_by_id('Home', 1);
 	$about = read_table_by_id('About', 1);
 	$contact = read_table_by_id('Contact', 1);
@@ -47,10 +48,15 @@
 
 		<address>
 			<h2><?php echo $contact['address_header'] ?></h2><br/>
-			<?php echo $contact['address_content'] ?>
+			<strong><h4><?php echo $contact['company_name'] ?></h4></strong> <br/>
+			<?php echo $contact['address_content'] ?> <br/>
+			<p>
+				<img src="images/telp-icon.png" width="20" height="20"/>
+				<?php echo $contact['telp_number'] ?>
+			</p>
 		</address>
 
-		<form class="lower-container" method="POST" action="" id="contactForm">
+		<form method="POST" action="" id="contactForm">
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
 			<label for="name">Name</label><br/>
 			<input type="text" name="name" class="input" /> <br/>
@@ -62,6 +68,16 @@
 			<textarea name="content" class="input"></textarea><br/>
 			<input type="submit" class="button"><br/>
 		</form>
+	</div>
+
+	<div  class="main row lower-container">
+		<h1><?php echo $contact['admin_email_header'] ?></h1>
+		<p>
+			<img src="images/email-logo.png" width="20" height="20"/>
+			<a href="mailto:<?php echo $admin['email'] ?>?Subject=indonistan" target="_top">
+				<?php echo $admin['email'] ?>
+			</a>
+		</p>
 	</div>
 
 

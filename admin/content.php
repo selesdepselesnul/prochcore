@@ -163,15 +163,29 @@ $home_weapons = read_table('HomeWeapon');
                 <label class="control-label" for="header">Address-header</label>
                 <input class="form-control" type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>">
             </div>
-
+            <div class="form-group">
+                <label class="control-label" for="header">Nama Perusahaan</label>
+                <input class="form-control" type="text" name="contact_company_name"
+                    value="<?php echo $contact['company_name']?>">
+            </div>
             <div class="form-group">
                 <label class="control-label" for="contact_address_content">Address-Content</label>
                 <textarea class="form-control" name="contact_address_content" rows="8" cols="40"><?php echo $contact['address_content']?></textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="contact_address_content">Telp</label>
+                <textarea class="form-control" name="contact_telp_number" rows="8" cols="40"><?php echo $contact['telp_number']?></textarea>
             </div>
 
             <div class="form-group">
                 <label class="control-label" for="contact_form_header">Form-Header</label>
                 <input class="form-control" type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="contact_form_header">Admin Email Header</label>
+                <input class="form-control" type="text" name="contact_admin_email_header"
+                value="<?php echo $contact['admin_email_header']?>">
             </div>
 
           </div>
@@ -231,9 +245,12 @@ $home_weapons = read_table('HomeWeapon');
 
         updateIfNotEmpty('Contact', 'contact_header', 'header');
         updateIfNotEmpty('Contact', 'contact_address_header', 'address_header');
+        updateIfNotEmpty('Contact', 'contact_company_name', 'address_header');
         updateIfNotEmpty('Contact', 'contact_address_content', 'address_content');
+        updateIfNotEmpty('Contact', 'contact_telp_number', 'telp_number');
         updateIfNotEmpty('Contact', 'contact_social_media_header', 'social_media_header');
         updateIfNotEmpty('Contact', 'contact_form_header', 'form_header');
+        updateIfNotEmpty('Contact', 'contact_admin_email_header', 'admin_email_header');
 
         redirectTo($config['base_url'].'admin/content.php');
 

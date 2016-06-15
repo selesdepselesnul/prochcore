@@ -88,8 +88,11 @@ CREATE TABLE Contact (
 	id TINYINT PRIMARY KEY,
 	header TEXT,
 	address_header TEXT,
+	company_name TEXT,
 	address_content TEXT,
-	form_header TEXT
+	telp_number TEXT,
+	form_header TEXT,
+	admin_email_header TEXT
 );
 
 
@@ -98,9 +101,11 @@ VALUES (
 	1,
 	'How To Contact Us ?',
 	'You can directly visit our office at',
-	'Indonistan Nuke Inc<br/>
-	Sehat Bahagia Street No. 100<br/>
+	'Indonistan Nuke Inc',
+	'Sehat Bahagia Street No. 100<br/>
 	Jelekong, Baleendah, Bandung 40375 West Java<br/>
 	Indonesia',
-	'Or contact us from this site, by filling this form'
+	'(022) 7562345',
+	'Or contact us from this site, by filling this form',
+	'Or send email to the personal email of admin'
 );
