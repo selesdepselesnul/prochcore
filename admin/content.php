@@ -174,7 +174,7 @@ $home_weapons = read_table('HomeWeapon');
             </div>
             <div class="form-group">
                 <label class="control-label" for="contact_address_content">Telp</label>
-                <textarea class="form-control" name="contact_telp_number" rows="8" cols="40"><?php echo $contact['telp_number']?></textarea>
+                <input class="form-control" name="contact_telp_number" value="<?php echo $contact['telp_number']?>"></input>
             </div>
 
             <div class="form-group">
@@ -245,7 +245,7 @@ $home_weapons = read_table('HomeWeapon');
 
         updateIfNotEmpty('Contact', 'contact_header', 'header');
         updateIfNotEmpty('Contact', 'contact_address_header', 'address_header');
-        updateIfNotEmpty('Contact', 'contact_company_name', 'address_header');
+        updateIfNotEmpty('Contact', 'contact_company_name', 'company_name');
         updateIfNotEmpty('Contact', 'contact_address_content', 'address_content');
         updateIfNotEmpty('Contact', 'contact_telp_number', 'telp_number');
         updateIfNotEmpty('Contact', 'contact_social_media_header', 'social_media_header');
