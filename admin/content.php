@@ -73,6 +73,12 @@ $home_weapons = read_rows('HomeWeapon');
         weaponInputFile.id = 'weapon_picture_'+counter;
         weaponInputFile.setAttribute('onchange', 'readURL(this)');
 
+        // span valid image
+        const spanValidImage = document.createElement('span');
+        spanValidImage.className = 'label label-info';
+        spanValidImage.role = 'alert';
+        spanValidImage.textContent = 'jpg / png / gif';
+
         // weapon desc
         const weaponDescTextArea = document.createElement('textarea');
         weaponDescTextArea.name = 'weapon_descriptions[]';
@@ -83,6 +89,9 @@ $home_weapons = read_rows('HomeWeapon');
         div.appendChild(divImg);
         div.appendChild(removeButton);
         div.appendChild(weaponInputFile);
+        div.appendChild(spanValidImage);
+        div.appendChild(document.createElement('br'));
+        div.appendChild(document.createElement('br'));
         div.appendChild(weaponDescTextArea);
         div.appendChild(document.createElement('br'));
 
@@ -125,7 +134,8 @@ $home_weapons = read_rows('HomeWeapon');
                                  id="weapon_picture_<?php echo $i+1 ?>"
                                  onchange="readURL(this)">
                          <span class="label label-info" role="alert">jpg / png / gif</span>
-
+                         <br />
+                         <br />
                           <textarea class="form-control" name="weapon_descriptions[]" rows="8" cols="40"><?php echo $home_weapon['description'] ?>
                           </textarea>
                           <br />
