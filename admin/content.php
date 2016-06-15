@@ -176,18 +176,15 @@ $home_weapons = read_table('HomeWeapon');
                 <label class="control-label" for="contact_address_content">Telp</label>
                 <input class="form-control" name="contact_telp_number" value="<?php echo $contact['telp_number']?>"></input>
             </div>
-
             <div class="form-group">
                 <label class="control-label" for="contact_form_header">Form-Header</label>
                 <input class="form-control" type="text" name="contact_form_header" value="<?php echo $contact['form_header']?>">
             </div>
-
             <div class="form-group">
                 <label class="control-label" for="contact_form_header">Admin Email Header</label>
                 <input class="form-control" type="text" name="contact_admin_email_header"
                 value="<?php echo $contact['admin_email_header']?>">
             </div>
-
           </div>
         </div>
         <input type="submit" class="btn btn-default" value="save">
