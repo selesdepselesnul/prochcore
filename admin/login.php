@@ -5,7 +5,7 @@ require_once 'header-admin.php';
 
 if(isset($_POST['username'])
     && isset($_POST['password'])) {
-    $admin = read_table_by_id('Admin', 1);
+    $admin = read_row_by_id('Admin', 1);
     if($_POST['username'] == $admin['username']
         && $_POST['password'] == $admin['password']) {
         session_start();

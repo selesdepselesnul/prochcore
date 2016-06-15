@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
 require_once 'function.php';
-$contact = read_table_by_id('Contact', 1);
+$contact = read_row_by_id('Contact', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">

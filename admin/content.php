@@ -1,12 +1,12 @@
 <?php
 require_once '../function.php';
-redirectIfNotLogin();
+redirect_if_not_login();
 require_once 'header-admin.php';
 
-$home = read_table_by_id('Home', 1);
-$about = read_table_by_id('About', 1);
-$contact = read_table_by_id('Contact', 1);
-$home_weapons = read_table('HomeWeapon');
+$home = read_row_by_id('Home', 1);
+$about = read_row_by_id('About', 1);
+$contact = read_row_by_id('Contact', 1);
+$home_weapons = read_rows('HomeWeapon');
 ?>
 
 <script type="text/javascript">
@@ -199,7 +199,7 @@ $home_weapons = read_table('HomeWeapon');
             foreach ($_POST['weapons_deleted'] as $weapon_path) {
                 $relative_weapon_fs = explode($config['base_url'], $weapon_path)[1];
                 $full_path_weapon_fs = $_SERVER['DOCUMENT_ROOT'].'/'.$config['project_root'].'/'.$relative_weapon_fs;
-                delete_table('HomeWeapon', 'image_path', $weapon_path);
+                delete_row('HomeWeapon', 'image_path', $weapon_path);
                 unlink($full_path_weapon_fs);
             }
         }
@@ -226,7 +226,7 @@ $home_weapons = read_table('HomeWeapon');
                         );
 
                         $full_path_img[] = $config['base_url'].$relative_pic;
-                        write_table('HomeWeapon' , [
+                        add_row('HomeWeapon' , [
                             'image_path' => $config['base_url'].$relative_pic,
                             'description' => $weapon_descriptions[$i]]);
                     }
@@ -234,22 +234,22 @@ $home_weapons = read_table('HomeWeapon');
             }
         }
 
-        updateIfNotEmpty('Home', 'home_header', 'header');
-        updateIfNotEmpty('Home', 'home_content', 'content');
+        update_if_not_empty('Home', 'home_header', 'header');
+        update_if_not_empty('Home', 'home_content', 'content');
 
-        updateIfNotEmpty('About', 'about_header', 'header');
-        updateIfNotEmpty('About', 'about_content', 'content');
+        update_if_not_empty('About', 'about_header', 'header');
+        update_if_not_empty('About', 'about_content', 'content');
 
-        updateIfNotEmpty('Contact', 'contact_header', 'header');
-        updateIfNotEmpty('Contact', 'contact_address_header', 'address_header');
-        updateIfNotEmpty('Contact', 'contact_company_name', 'company_name');
-        updateIfNotEmpty('Contact', 'contact_address_content', 'address_content');
-        updateIfNotEmpty('Contact', 'contact_telp_number', 'telp_number');
-        updateIfNotEmpty('Contact', 'contact_social_media_header', 'social_media_header');
-        updateIfNotEmpty('Contact', 'contact_form_header', 'form_header');
-        updateIfNotEmpty('Contact', 'contact_admin_email_header', 'admin_email_header');
+        update_if_not_empty('Contact', 'contact_header', 'header');
+        update_if_not_empty('Contact', 'contact_address_header', 'address_header');
+        update_if_not_empty('Contact', 'contact_company_name', 'company_name');
+        update_if_not_empty('Contact', 'contact_address_content', 'address_content');
+        update_if_not_empty('Contact', 'contact_telp_number', 'telp_number');
+        update_if_not_empty('Contact', 'contact_social_media_header', 'social_media_header');
+        update_if_not_empty('Contact', 'contact_form_header', 'form_header');
+        update_if_not_empty('Contact', 'contact_admin_email_header', 'admin_email_header');
 
-        redirectTo($config['base_url'].'admin/content.php');
+        redirect_to($config['base_url'].'admin/content.php');
 
     }
 

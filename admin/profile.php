@@ -1,14 +1,14 @@
 <?php
 require_once '../function.php';
-redirectIfNotLogin();
+redirect_if_not_login();
 require_once 'header-admin.php';
 
 
 
-updateIfNotEmpty('Admin', 'username', 'username');
-updateIfNotEmpty('Admin', 'password', 'password');
-updateIfNotEmpty('Admin', 'email', 'email');
-updateIfNotEmpty('Admin', 'fullname', 'fullname');
+update_if_not_empty('Admin', 'username', 'username');
+update_if_not_empty('Admin', 'password', 'password');
+update_if_not_empty('Admin', 'email', 'email');
+update_if_not_empty('Admin', 'fullname', 'fullname');
 
 
 if(isset($_POST["submit"])) {
@@ -17,7 +17,7 @@ if(isset($_POST["submit"])) {
 	    if($check) {
 			$tmp_ava = $_FILES["avatar"]["tmp_name"];
 			if(is_valid_std_img($tmp_ava)) {
-				$admin = read_table_by_id('Admin', 1);
+				$admin = read_row_by_id('Admin', 1);
 				$ava_name = $_FILES["avatar"]["name"];
 				echo $ava_name;
 				unlink($admin['avatar']);
@@ -30,7 +30,7 @@ if(isset($_POST["submit"])) {
 	}
 }
 
-$admin = read_table_by_id('Admin', 1);
+$admin = read_row_by_id('Admin', 1);
 ?>
 <div class="row upper-row">
 	<img src="<?php echo $admin['avatar'] ?>" class="img-circle" width="200" height="200">

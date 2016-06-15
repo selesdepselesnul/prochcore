@@ -2,23 +2,32 @@
 	require_once 'header.php';
 	require_once 'function.php';
 
-	$admin = read_table_by_id('Admin', 1);
-	$home = read_table_by_id('Home', 1);
-	$about = read_table_by_id('About', 1);
-	$contact = read_table_by_id('Contact', 1);
-	$home_weapons = read_table('HomeWeapon');
+	$admin = read_row_by_id('Admin', 1);
+	$home = read_row_by_id('Home', 1);
+	$about = read_row_by_id('About', 1);
+	$contact = read_row_by_id('Contact', 1);
+	$home_weapons = read_rows('HomeWeapon');
+	$is_sending_success = '';
 
-	if(!empty($_POST['name'])
-		&& !empty($_POST['email'])
-		&& !empty($_POST['subject'])
-		&& !empty($_POST['content']))
-		write_table('Inbox', [
-			'name' => $_POST['name'],
-			'email' => $_POST['email'],
-			'subject' => $_POST['subject'],
-			'content' => $_POST['content']
-		]);
-?>
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		if(!empty($_POST['name'])
+			&& !empty($_POST['email'])
+			&& !empty($_POST['subject'])
+			&& !empty($_POST['content'])) {
+			add_row('Inbox', [
+				'name' => $_POST['name'],
+				'email' => $_POST['email'],
+				'subject' => $_POST['subject'],
+				'content' => $_POST['content']
+			]);
+			$is_sending_success = 'success';
+		} else {
+			$is_sending_success = 'unsuccessful';
+		}
+		redirect_to($config['base_url'].'#contact');
+	}
+
+	?>
 	<div class="home row  upper-row" id="home" class="main">
 			<h1><?php echo $home['header'] ?></h1>
 			<p>
@@ -58,6 +67,14 @@
 
 		<form method="POST" action="" id="contactForm">
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
+			<?php if(!empty($is_sending_success)): ?>
+				<?php if($is_sending_success == 'success'): ?>
+					<label class="label label-success">Sukses</label>
+				<?php else: ?>
+					<label class="label label-danger">Gagal</label>
+				<?php endif ?>
+			<?php endif ?>
+			<br />
 			<label for="name">Name</label><br/>
 			<input type="text" name="name" class="input" /> <br/>
 			<label for="email">E-Mail</label><br/>
@@ -68,6 +85,8 @@
 			<textarea name="content" class="input"></textarea><br/>
 			<input type="submit" class="button"><br/>
 		</form>
+
+
 	</div>
 
 	<div  class="main row lower-container">

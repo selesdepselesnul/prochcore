@@ -13,7 +13,7 @@ function process_db($mysql_action) {
     return $result;
 }
 
-function read_table_by_id($table, $id) {
+function read_row_by_id($table, $id) {
     return process_db(function($connection) use($table, $id) {
         $q = mysqli_query($connection, "SELECT * FROM $table WHERE id = $id;");
         $result = mysqli_fetch_assoc($q);
@@ -33,7 +33,7 @@ function exec_query($query) {
     });
 }
 
-function read_table($table) {
+function read_rows($table) {
     return process_db(function($connection) use($table) {
         $rows = [];
         if ($result = mysqli_query($connection, "SELECT * FROM $table;")) {
@@ -45,7 +45,7 @@ function read_table($table) {
     });
 }
 
-function update_table_by_id($table, $id, $fields) {
+function update_row_by_id($table, $id, $fields) {
     process_db(function($connection) use($table, $id, $fields){
         $query="UPDATE $table SET ";
         foreach ($fields as $key => $value)
@@ -56,7 +56,7 @@ function update_table_by_id($table, $id, $fields) {
     });
 }
 
-function write_table($table, $fields) {
+function add_row($table, $fields) {
     process_db(function($connection) use($table, $fields){
         $query="INSERT INTO $table ";
         $keys = "(";
@@ -79,11 +79,11 @@ function delete_table($content, $col, $val) {
     });
 }
 
-function redirectIfNotLogin() {
+function redirect_if_not_login() {
     if(!isset($_SESSION['login'])) {
         if(!isset($config))
             require_once 'config.php';
-        redirectTo('login.php');
+        redirect_to('login.php');
     }
 }
 
@@ -91,7 +91,7 @@ function is_login() {
     return !empty($_SESSION['login']);
 }
 
-function redirectTo($new_url) {
+function redirect_to($new_url) {
     echo "
         <script>
             window.location.href = '$new_url';
@@ -115,9 +115,9 @@ function generate_active_class($page)  {
 	 echo $current_page == $page . '.php' ? 'class="active"' : '';
 }
 
-function updateIfNotEmpty($table_name, $post_name, $field_name) {
+function update_if_not_empty($table_name, $post_name, $field_name) {
 	if(!empty($_POST[$post_name]))
-		update_table_by_id($table_name, 1, [
+		update_row_by_id($table_name, 1, [
 			$field_name => $_POST[$post_name]
 		]);
 }

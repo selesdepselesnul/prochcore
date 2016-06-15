@@ -1,6 +1,6 @@
 <?php
 require_once 'header-admin.php';
-redirectIfNotLogin();
+redirect_if_not_login();
 $limit = 5;
 
 function generate_span_status($class, $status) {
@@ -93,8 +93,8 @@ if (!empty($_GET['page'])) {
         </div>
 <?php
 } elseif(!empty($_GET['id'])) {
-    $inbox = read_table_by_id('Inbox', $_GET['id']);
-    update_table_by_id('Inbox',
+    $inbox = read_row_by_id('Inbox', $_GET['id']);
+    update_row_by_id('Inbox',
         $_GET['id'],
         ['is_read' => TRUE]);
 ?>
@@ -110,7 +110,7 @@ if (!empty($_GET['page'])) {
     </div>
 <?php
 } else {
-    redirectTo($config['base_url']);
+    redirect_to($config['base_url']);
 }
 require_once '../footer.php';
 ?>
