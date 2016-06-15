@@ -10,7 +10,7 @@ update_if_not_empty('Admin', 'password', 'password');
 update_if_not_empty('Admin', 'email', 'email');
 update_if_not_empty('Admin', 'fullname', 'fullname');
 
-
+$message = '';
 if(isset($_POST["submit"])) {
 	if($_FILES["avatar"]["tmp_name"] !== '') {
 		$check = getimagesize($_FILES["avatar"]["tmp_name"]);
@@ -19,14 +19,19 @@ if(isset($_POST["submit"])) {
 			if(is_valid_std_img($tmp_ava)) {
 				$admin = read_row_by_id('Admin', 1);
 				$ava_name = $_FILES["avatar"]["name"];
-				echo $ava_name;
 				unlink($admin['avatar']);
 				move_uploaded_file($tmp_ava, $ava_name);
 				process_db(function($conn) use($ava_name){
 					mysqli_query($conn, "UPDATE Admin SET avatar = '$ava_name' WHERE id = 1");
 				});
+			} else {
+				$is_image_success = false;
+				$message = 'format tidak support !';
 			}
-	    }
+	    } else {
+			$is_image_success = false;
+			$message = 'format tidak support !';
+		}
 	}
 }
 
@@ -40,6 +45,15 @@ $admin = read_row_by_id('Admin', 1);
 			<input type="file" name="avatar"/>
  			<span class="label label-info" role="alert">jpg / png / gif</span>
 		</div>
+		<?php if (isset($is_image_success)): ?>
+			<?php if(!$is_image_success): ?>
+				<div class="form-group">
+					<div class="label label-danger">
+						<?php echo $message ?>
+					</div>
+				</div>
+			<?php endif ?>
+		<?php endif ?>
 		<div class="form-group">
 			<label class="control-label" for="username">Username</label>
 			<input class="form-control" type="text" name="username"
