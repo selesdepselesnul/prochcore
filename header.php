@@ -1,9 +1,13 @@
-<?php require_once 'config.php'; ?>
+<?php
+require_once 'config.php';
+require_once 'function.php';
+$contact = read_table_by_id('Contact', 1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>INDONISTAN NUKE INC</title>
+	<title><?php echo $contact['company_name']?></title>
 	<link rel="stylesheet"
 	href="<?php echo $config['base_url'].'index.css' ?>">
 	<link rel="stylesheet"
@@ -15,7 +19,7 @@
 		<img src="<?php echo $config['base_url'].'images/logo.png'?>"
 			 id="indonistanLogo"/>
 	</a>
-	<h2 id="indonistanName">Indonistan Nuke Inc</h2>
+	<h2 id="indonistanName"><?php echo $contact['company_name']?></h2>
 	<ul>
 		<li class="menu-list">
 		<a

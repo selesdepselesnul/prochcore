@@ -164,7 +164,7 @@ $home_weapons = read_table('HomeWeapon');
                 <input class="form-control" type="text" name="contact_address_header" value="<?php echo $contact['address_header']?>">
             </div>
             <div class="form-group">
-                <label class="control-label" for="header">Nama Perusahaan</label>
+                <label class="control-label" for="header">Company Name</label>
                 <input class="form-control" type="text" name="contact_company_name"
                     value="<?php echo $contact['company_name']?>">
             </div>
