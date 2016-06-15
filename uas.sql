@@ -71,14 +71,14 @@ INSERT INTO About
 VALUES (
 	1,
 	'Who we are ?',
-	'We are Nuclear weapon company from Indonesia,<br/>
-	 we are disribute nuclear and its vehicle all of them are made in Russia,<br/>
-	 but lately we also build our own nuclear and its vehicle.<br/>
-	 Quality is our priority, we are experienced company,<br/>
-	 we do our bussiness since soviet union era.<br/>
-	 We work with passion and love, we believe peace is better<br/>
-	 but peace can be reached with war, so deal with it<br/>
-	 are you ready for NUKE ?<br/>
+	'We are Nuclear weapon company from Indonesia,
+	 we are disribute nuclear and its vehicle all of them are made in Russia,
+	 but lately we also build our own nuclear and its vehicle.
+	 Quality is our priority, we are experienced company,
+	 we do our bussiness since soviet union era.
+	 We work with passion and love, we believe peace is better
+	 but peace can be reached with war, so deal with it
+	 are you ready for NUKE ?
 	 <b>URA URA URA !!!</b>'
 );
 
@@ -102,8 +102,8 @@ VALUES (
 	'How To Contact Us ?',
 	'You can directly visit our office at',
 	'Indonistan Nuke Inc',
-	'Sehat Bahagia Street No. 100<br/>
-	Jelekong, Baleendah, Bandung 40375 West Java<br/>
+	'Sehat Bahagia Street No. 100
+	Jelekong, Baleendah, Bandung 40375 West Java
 	Indonesia',
 	'(022) 7562345',
 	'Or contact us from this site, by filling this form',

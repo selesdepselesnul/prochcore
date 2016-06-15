@@ -22,7 +22,7 @@
 	<div class="home row  upper-row" id="home" class="main">
 			<h1><?php echo $home['header'] ?></h1>
 			<p>
-				<?php echo $home['content'] ?>
+				<?php echo nl2br($home['content']) ?>
 			</p>
 			<div class="row">
 				<?php foreach ($home_weapons as $home_weapon): ?>
@@ -39,7 +39,7 @@
 	<div id="about" class="main row">
 		<h1><?php echo $about['header'] ?></h1>
 		<p>
-			<?php echo $about['content'] ?>
+			<?php echo nl2br($about['content']) ?>
 		</p>
 	</div>
 
@@ -49,7 +49,7 @@
 		<address>
 			<h2><?php echo $contact['address_header'] ?></h2><br/>
 			<strong><h4><?php echo $contact['company_name'] ?></h4></strong> <br/>
-			<?php echo $contact['address_content'] ?> <br/>
+			<?php echo nl2br($contact['address_content']) ?> <br/>
 			<p>
 				<img src="images/telp-icon.png" width="20" height="20"/>
 				<?php echo $contact['telp_number'] ?>
