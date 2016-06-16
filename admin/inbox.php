@@ -98,7 +98,7 @@ if (!empty($_GET['page'])) {
         $_GET['id'],
         ['is_read' => TRUE]);
 ?>
-    <div class="row upper-row">
+   <div class="row upper-row">
         <h1><?php echo $inbox['subject']?></h1>
         <hr />
         <p>
