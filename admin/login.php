@@ -3,7 +3,6 @@ require_once '../function.php';
 require_once '../config.php';
 require_once 'header-admin.php';
 
-
 if(isset($_POST['username'])
     && isset($_POST['password'])) {
     $admin = read_row_by_id('Admin', 1);
@@ -38,7 +37,6 @@ if(isset($_POST['username'])
                 </div>
             <?php endif ?>
         <?php endif ?>
-
     </div>
 
 <?php require_once '../footer.php' ?>

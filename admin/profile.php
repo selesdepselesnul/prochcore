@@ -3,14 +3,11 @@ require_once '../function.php';
 redirect_if_not_login();
 require_once 'header-admin.php';
 
-
-
 update_if_not_empty('Admin', 'username', 'username');
 update_if_not_empty('Admin', 'password', 'password');
 update_if_not_empty('Admin', 'email', 'email');
 update_if_not_empty('Admin', 'fullname', 'fullname');
 
-$message = '';
 if(isset($_POST["submit"])) {
 	if($_FILES["avatar"]["tmp_name"] !== '') {
 		$check = getimagesize($_FILES["avatar"]["tmp_name"]);
@@ -26,11 +23,9 @@ if(isset($_POST["submit"])) {
 				});
 			} else {
 				$is_image_success = false;
-				$message = 'format tidak support !';
 			}
 	    } else {
 			$is_image_success = false;
-			$message = 'format tidak support !';
 		}
 	}
 }
@@ -49,7 +44,7 @@ $admin = read_row_by_id('Admin', 1);
 			<?php if(!$is_image_success): ?>
 				<div class="form-group">
 					<div class="label label-danger">
-						<?php echo $message ?>
+						<?php echo 'format tidak di support !' ?>
 					</div>
 				</div>
 			<?php endif ?>
@@ -61,7 +56,7 @@ $admin = read_row_by_id('Admin', 1);
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input class="form-control" type="password" name="password"
+			<input class="form-control" type="text" name="password"
 					value="<?php echo $admin['password']?>" />
 		</div>
 		<div class="form-group">
@@ -80,6 +75,4 @@ $admin = read_row_by_id('Admin', 1);
 	</form>
 </div>
 
-<?php
-require_once '../footer.php';
-?>
+<?php require_once '../footer.php'; ?>

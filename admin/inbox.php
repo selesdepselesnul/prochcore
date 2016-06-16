@@ -25,7 +25,7 @@ if (!empty($_GET['page'])) {
     $bound = $_GET['page'] * $limit - $limit;
 
     $inboxs = exec_query(
-        "SELECT * FROM `inbox` ORDER BY message_time DESC LIMIT $bound, $limit");
+        "SELECT * FROM Inbox ORDER BY message_time DESC LIMIT $bound, $limit");
 
 ?>
     <div class="row upper-row">
@@ -60,7 +60,7 @@ if (!empty($_GET['page'])) {
                             >Baca</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endforeach ?>
             </tbody>
         </table>
     </div>
@@ -81,7 +81,7 @@ if (!empty($_GET['page'])) {
                     </a>
                 </li>
                 <?php if($i ==  $page_count) break;?>
-            <?php endfor;?>
+            <?php endfor ?>
             <?php if($upper_page < $page_count): ?>
                 <li>
                   <a href="<?php echo $config['base_url'].'admin/inbox.php?page='.($upper_page + 1) ?>" aria-label="Next">

@@ -7,22 +7,38 @@
 	$about = read_row_by_id('About', 1);
 	$contact = read_row_by_id('Contact', 1);
 	$home_weapons = read_rows('HomeWeapon');
-	$is_sending_success = '';
+
+	$name = '';
+	$email = '';
+	$subject = '';
+	$content = '';
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if(!empty($_POST['name'])
-			&& !empty($_POST['email'])
-			&& !empty($_POST['subject'])
-			&& !empty($_POST['content'])) {
+
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$subject = $_POST['subject'];
+		$content = $_POST['content'];
+
+		if(!empty($name)
+			&& !empty($email)
+			&& !empty($subject)
+			&& !empty($content)) {
+
+			$name = '';
+			$email = '';
+			$subject = '';
+			$content = '';
+
 			add_row('Inbox', [
 				'name' => $_POST['name'],
 				'email' => $_POST['email'],
 				'subject' => $_POST['subject'],
 				'content' => $_POST['content']
 			]);
-			$is_sending_success = 'success';
+			$is_sending_success = true;
 		} else {
-			$is_sending_success = 'unsuccessful';
+			$is_sending_success = false;
 		}
 		redirect_to($config['base_url'].'#contact');
 	}
@@ -67,8 +83,8 @@
 
 		<form method="POST" action="" id="contactForm">
 			<h2><?php echo $contact['form_header'] ?></h2><br/>
-			<?php if(!empty($is_sending_success)): ?>
-				<?php if($is_sending_success == 'success'): ?>
+			<?php if(isset($is_sending_success)): ?>
+				<?php if($is_sending_success): ?>
 					<label class="label label-success">Terima kasih, pesan sukses dikirim ke pihak <?php echo $contact['company_name'] ?></label>
 				<?php else: ?>
 					<label class="label label-danger">Gagal dikirim, harap semua input dilengkapi !</label>
@@ -76,13 +92,13 @@
 			<?php endif ?>
 			<br />
 			<label for="name">Name</label><br/>
-			<input type="text" name="name" class="input" /> <br/>
+			<input type="text" name="name" class="input" value="<?php echo $name ?>"/> <br/>
 			<label for="email">E-Mail</label><br/>
-			<input type="email" name="email" class="input" /> <br/>
+			<input type="email" name="email" class="input" value="<?php echo $email ?>"/> <br/>
 			<label for="subject">Subject</label><br/>
-			<input type="text" name="subject" class="input" /> <br/>
+			<input type="text" name="subject" class="input" value="<?php echo $subject ?>"/> <br/>
 			<label for="content">Content</label> <br/>
-			<textarea name="content" class="input"></textarea><br/>
+			<textarea name="content" class="input"><?php echo $content ?></textarea><br/>
 			<input type="submit" class="button"><br/>
 		</form>
 
